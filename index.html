@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a237e">
+    <title>ДГУ - Успеваемость</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <style>
+        :root {
+            --primary: #1a237e;
+            --secondary: #3949ab;
+            --accent: #ff4081;
+            --text: #212121;
+            --background: #f5f5f5;
+            --card-bg: #ffffff;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+        }
+
+        [data-theme="dark"] {
+            --primary: #121858;
+            --secondary: #283593;
+            --accent: #ff4081;
+            --text: #e0e0e0;
+            --background: #121212;
+            --card-bg: #1e1e1e;
+            --success: #388e3c;
+            --warning: #f57c00;
+            --danger: #d32f2f;
+        }
+
+        [data-theme="nature"] {
+            --primary: #1b5e20;
+            --secondary: #2e7d32;
+            --accent: #ff6d00;
+            --text: #212121;
+            --background: #e8f5e9;
+            --card-bg: #ffffff;
+            --success: #2e7d32;
+            --warning: #f9a825;
+            --danger: #c62828;
+        }
+
+        [data-theme="sunset"] {
+            --primary: #d50000;
+            --secondary: #ff5131;
+            --accent: #ffab00;
+            --text: #212121;
+            --background: #fff3e0;
+            --card-bg: #ffffff;
+            --success: #64dd17;
+            --warning: #ffab00;
+            --danger: #dd2c00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Roboto', 'Arial', sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 100%;
+            padding: 16px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .theme-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .theme-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+        }
+
+        .theme-options {
+            position: absolute;
+            top: 50px;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: none;
+            z-index: 100;
+            width: 150px;
+        }
+
+        .theme-options.show {
+            display: block;
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .theme-option:hover {
+            background: #f5f5f5;
+        }
+
+        .theme-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .theme-default .theme-color {
+            background: linear-gradient(135deg, #1a237e, #3949ab);
+        }
+
+        .theme-dark .theme-color {
+            background: linear-gradient(135deg, #121858, #283593);
+        }
+
+        .theme-nature .theme-color {
+            background: linear-gradient(135deg, #1b5e20, #2e7d32);
+        }
+
+        .theme-sunset .theme-color {
+            background: linear-gradient(135deg, #d50000, #ff5131);
+        }
+
+        .login-form {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: var(--card-bg);
+            color: var(--text);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:active {
+            transform: scale(0.98);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .dashboard {
+            display: none;
+        }
+
+        .user-info {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            width: auto;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: var(--primary);
+        }
+
+        .subjects {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .subject {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .subject:last-child {
+            border-bottom: none;
+        }
+
+        .subject-name {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .subject-info {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .grade {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            background-color: var(--success);
+            color: white;
+            font-weight: 500;
+        }
+
+        .grade.warning {
+            background-color: var(--warning);
+        }
+
+        .grade.danger {
+            background-color: var(--danger);
+        }
+
+        .install-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            display: none;
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left: 4px solid var(--primary);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">ДГУ</div>
+        </div>
+        <h1>Дагестанский Государственный Университет</h1>
+        <p>Проверьте свою успеваемость и посещаемость</p>
+        
+        <div class="theme-selector">
+            <button class="theme-btn">🎨</button>
+            <div class="theme-options">
+                <div class="theme-option theme-default" data-theme="default">
+                    <div class="theme-color"></div>
+                    <span>Стандартная</span>
+                </div>
+                <div class="theme-option theme-dark" data-theme="dark">
+                    <div class="theme-color"></div>
+                    <span>Тёмная</span>
+                </div>
+                <div class="theme-option theme-nature" data-theme="nature">
+                    <div class="theme-color"></div>
+                    <span>Природа</span>
+                </div>
+                <div class="theme-option theme-sunset" data-theme="sunset">
+                    <div class="theme-color"></div>
+                    <span>Закат</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="login-form" id="loginForm">
+            <h2 class="form-title">Вход в систему</h2>
+            <div class="form-group">
+                <label for="lastName">Фамилия</label>
+                <input type="text" id="lastName" placeholder="Введите вашу фамилию">
+            </div>
+            <div class="form-group">
+                <label for="firstName">Имя</label>
+                <input type="text" id="firstName" placeholder="Введите ваше имя">
+            </div>
+            <div class="form-group">
+                <label for="middleName">Отчество</label>
+                <input type="text" id="middleName" placeholder="Введите ваше отчество">
+            </div>
+            <div class="form-group">
+                <label for="recordBook">Номер зачетной книжки</label>
+                <input type="text" id="recordBook" placeholder="Введите номер зачетной книжки">
+            </div>
+            <button id="loginBtn">Войти</button>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Загрузка данных...</p>
+        </div>
+
+        <div class="dashboard" id="dashboard">
+            <div class="user-info">
+                <div>
+                    <h2 id="userName">Иванов Иван Иванович</h2>
+                    <p>Зачетная книжка: <span id="userRecordBook">123456</span></p>
+                </div>
+                <button class="logout-btn" id="logoutBtn">Выйти</button>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <p>Средний балл</p>
+                    <div class="stat-value" id="averageGrade">4.5</div>
+                    <p>из 5.0</p>
+                </div>
+                <div class="stat-card">
+                    <p>Посещаемость</p>
+                    <div class="stat-value" id="attendance">87%</div>
+                    <p>пропущено: <span id="missedClasses">5</span> пар</p>
+                </div>
+            </div>
+
+            <div class="subjects">
+                <h3>Предметы и оценки</h3>
+                <div id="subjectsList">
+                    <!-- Subjects will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="install-btn" id="installBtn">+</button>
+
+    <script>
+        // Theme switching functionality
+        document.querySelector('.theme-btn').addEventListener('click', function() {
+            document.querySelector('.theme-options').classList.toggle('show');
+        });
+
+        document.querySelectorAll('.theme-option').forEach(option => {
+            option.addEventListener('click', function() {
+                const theme = this.getAttribute('data-theme');
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                document.querySelector('.theme-options').classList.remove('show');
+            });
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'default';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+
+        // Login functionality
+        document.getElementById('loginBtn').addEventListener('click', function() {
+            const lastName = document.getElementById('lastName').value;
+            const firstName = document.getElementById('firstName').value;
+            const middleName = document.getElementById('middleName').value;
+            const recordBook = document.getElementById('recordBook').value;
+
+            if (!lastName || !firstName || !recordBook) {
+                alert('Пожалуйста, заполните все обязательные поля');
+                return;
+            }
+
+            // Show loading
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('loading').style.display = 'block';
+
+            // Simulate loading data
+            setTimeout(() => {
+                // Save user data
+                localStorage.setItem('user', JSON.stringify({
+                    lastName,
+                    firstName,
+                    middleName,
+                    recordBook
+                }));
+
+                // Update UI with user data
+                document.getElementById('userName').textContent = `${lastName} ${firstName} ${middleName}`;
+                document.getElementById('userRecordBook').textContent = recordBook;
+
+                // Load sample data (in real app, this would come from API)
+                loadSampleData();
+
+                // Show dashboard
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+            }, 1500);
+        });
+
+        // Logout functionality
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.removeItem('user');
+            document.getElementById('dashboard').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+            
+            // Clear form
+            document.getElementById('lastName').value = '';
+            document.getElementById('firstName').value = '';
+            document.getElementById('middleName').value = '';
+            document.getElementById('recordBook').value = '';
+        });
+
+        // Check if user is already logged in
+        window.addEventListener('load', function() {
+            const user = JSON.parse(localStorage.getItem('user') || 'null');
+            if (user) {
+                document.getElementById('userName').textContent = `${user.lastName} ${user.firstName} ${user.middleName}`;
+                document.getElementById('userRecordBook').textContent = user.recordBook;
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                loadSampleData();
+            }
+        });
+
+        // Sample data for demonstration
+        function loadSampleData() {
+            const subjects = [
+                { name: 'Математика', grade: 5, attendance: '95%', missed: 1 },
+                { name: 'Физика', grade: 4, attendance: '85%', missed: 3 },
+                { name: 'Информатика', grade: 5, attendance: '100%', missed: 0 },
+                { name: 'История', grade: 3, attendance: '75%', missed: 5 },
+                { name: 'Английский язык', grade: 4, attendance: '90%', missed: 2 },
+                { name: 'Физкультура', grade: 5, attendance: '100%', missed: 0 }
+            ];
+
+            const subjectsList = document.getElementById('subjectsList');
+            subjectsList.innerHTML = '';
+
+            let totalGrade = 0;
+            let totalAttendance = 0;
+            let totalMissed = 0;
+
+            subjects.forEach(subject => {
+                totalGrade += subject.grade;
+                totalAttendance += parseInt(subject.attendance);
+                totalMissed += subject.missed;
+
+                const subjectEl = document.createElement('div');
+                subjectEl.className = 'subject';
+                
+                let gradeClass = '';
+                if (subject.grade < 3) gradeClass = 'danger';
+                else if (subject.grade < 4) gradeClass = 'warning';
+
+                subjectEl.innerHTML = `
+                    <div class="subject-name">${subject.name}</div>
+                    <div class="subject-info">
+                        <span>Оценка: <span class="grade ${gradeClass}">${subject.grade}</span></span>
+                        <span>Посещаемость: ${subject.attendance}</span>
+                        <span>Пропущено: ${subject.missed} пар</span>
+                    </div>
+                `;
+
+                subjectsList.appendChild(subjectEl);
+            });
+
+            // Calculate averages
+            const avgGrade = (totalGrade / subjects.length).toFixed(1);
+            const avgAttendance = Math.round(totalAttendance / subjects.length);
+            
+            document.getElementById('averageGrade').textContent = avgGrade;
+            document.getElementById('attendance').textContent = `${avgAttendance}%`;
+            document.getElementById('missedClasses').textContent = totalMissed;
+        }
+
+        // PWA Installation
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.style.display = 'flex';
+            installBtn.addEventListener('click', installApp);
+        });
+
+        function installApp() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted the install prompt');
+                    } else {
+                        console.log('User dismissed the install prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+            installBtn.style.display = 'none';
+        }
+
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA was installed');
+            installBtn.style.display = 'none';
+            deferredPrompt = null;
+        });
+
+        // Register Service Worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('sw.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
