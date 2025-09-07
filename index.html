@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#1a237e">
     <title>ДГУ - Успеваемость</title>
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSI0MCIgZmlsbD0iIzFhMjM3ZSIvPjx0ZXh0CB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiIGZvbnQtc2l6ZT0iODAiIGZvbnQtd2VpZ2h0PSJib2xkIj7QlNCz0LA8L3RleHQ+PC9zdmc+">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSI0MCIgZmlsbD0iIzFhMjM3ZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSI4MCIgZm9udC13ZWlnaHQ9ImJvbGQiPtCU0LPQsDwvdGV4dD48L3N2Zz4=">
     <style>
         :root {
             --primary: #1a237e;
@@ -554,6 +554,20 @@
         .icon-attendance {
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a237e'%3E%3Cpath d='M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z'/%3E%3C/svg%3E");
         }
+        
+        .offline-message {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--warning);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -590,6 +604,7 @@
     <div class="container">
         <div class="error-message" id="errorMessage"></div>
         <div class="success-message" id="successMessage"></div>
+        <div class="offline-message" id="offlineMessage">Работаем в офлайн-режиме</div>
 
         <div class="login-form" id="loginForm">
             <h2 class="form-title">Вход в систему</h2>
@@ -723,12 +738,41 @@
             document.getElementById('loading').style.display = 'block';
             document.getElementById('errorMessage').style.display = 'none';
 
-            // Simulate API request to studstat.dgu.ru
-            setTimeout(() => {
-                // In a real application, you would make a fetch request to the studstat.dgu.ru API
-                // For demonstration purposes, we're using a simulation
+            // Try to fetch data from studstat.dgu.ru
+            fetchStudentData(lastName, firstName, middleName, recordBook);
+        });
+
+        // Function to fetch student data from studstat.dgu.ru
+        async function fetchStudentData(lastName, firstName, middleName, recordBook) {
+            try {
+                // Попытка получить данные с сайта studstat.dgu.ru
+                // В реальном приложении здесь должен быть правильный API endpoint
+                const response = await fetchWithTimeout('http://studstat.dgu.ru/api/student', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        lastName,
+                        firstName,
+                        middleName,
+                        recordBook
+                    }),
+                    timeout: 10000 // 10 секунд таймаут
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    processStudentData(data, lastName, firstName, middleName, recordBook);
+                } else {
+                    throw new Error('Ошибка сервера: ' + response.status);
+                }
+            } catch (error) {
+                console.error('Ошибка при получении данных:', error);
+                // Если не удалось получить данные с сайта, используем демо-данные
+                showError('Не удалось подключиться к системе. Показаны демо-данные.');
                 
-                // Save user data
+                // Сохраняем данные пользователя
                 localStorage.setItem('user', JSON.stringify({
                     lastName,
                     firstName,
@@ -736,24 +780,66 @@
                     recordBook
                 }));
 
-                // Update UI with user data
+                // Обновляем UI с данными пользователя
                 document.getElementById('userName').textContent = `${lastName} ${firstName} ${middleName}`;
                 document.getElementById('userRecordBook').textContent = recordBook;
 
-                // Load sample data (in real app, this would come from API)
+                // Загружаем демо-данные
                 loadSampleData();
 
-                // Show dashboard
+                // Показываем dashboard
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('dashboard').style.display = 'block';
-                
-                showSuccess('Добро пожаловать! Данные успешно загружены.');
-            }, 2000);
-        });
+            }
+        }
+
+        // Helper function for fetch with timeout
+        async function fetchWithTimeout(resource, options = {}) {
+            const { timeout = 8000 } = options;
+            
+            const controller = new AbortController();
+            const id = setTimeout(() => controller.abort(), timeout);
+            
+            const response = await fetch(resource, {
+                ...options,
+                signal: controller.signal  
+            });
+            clearTimeout(id);
+            
+            return response;
+        }
+
+        // Process student data from API
+        function processStudentData(data, lastName, firstName, middleName, recordBook) {
+            // Сохраняем данные пользователя
+            localStorage.setItem('user', JSON.stringify({
+                lastName,
+                firstName,
+                middleName,
+                recordBook
+            }));
+
+            // Сохраняем данные об успеваемости
+            localStorage.setItem('studentData', JSON.stringify(data));
+
+            // Обновляем UI с данными пользователя
+            document.getElementById('userName').textContent = `${lastName} ${firstName} ${middleName}`;
+            document.getElementById('userRecordBook').textContent = recordBook;
+
+            // Загружаем данные
+            loadStudentData(data);
+
+            // Показываем dashboard
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+            
+            showSuccess('Добро пожаловать! Данные успешно загружены.');
+        }
 
         // Logout functionality
         document.getElementById('logoutBtn').addEventListener('click', function() {
             localStorage.removeItem('user');
+            localStorage.removeItem('studentData');
             document.getElementById('dashboard').style.display = 'none';
             document.getElementById('loginForm').style.display = 'block';
             
@@ -770,7 +856,14 @@
                 document.querySelectorAll('.semester-btn').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 const semester = this.getAttribute('data-semester');
-                loadSampleData(semester);
+                
+                // Загружаем данные для выбранного семестра
+                const studentData = JSON.parse(localStorage.getItem('studentData') || 'null');
+                if (studentData && studentData.semesters) {
+                    loadStudentData(studentData, semester);
+                } else {
+                    loadSampleData(semester);
+                }
             });
         });
 
@@ -782,9 +875,27 @@
                 document.getElementById('userRecordBook').textContent = user.recordBook;
                 document.getElementById('loginForm').style.display = 'none';
                 document.getElementById('dashboard').style.display = 'block';
-                loadSampleData();
+                
+                const studentData = JSON.parse(localStorage.getItem('studentData') || 'null');
+                if (studentData) {
+                    loadStudentData(studentData);
+                } else {
+                    loadSampleData();
+                }
             }
+            
+            // Проверяем онлайн-статус
+            updateOnlineStatus();
+            window.addEventListener('online', updateOnlineStatus);
+            window.addEventListener('offline', updateOnlineStatus);
         });
+
+        // Load student data from API response
+        function loadStudentData(studentData, semester = '1') {
+            // В реальном приложении здесь будет обработка данных с сервера
+            // Для демонстрации используем sample data
+            loadSampleData(semester);
+        }
 
         // Sample data for demonstration
         function loadSampleData(semester = '1') {
@@ -832,6 +943,9 @@
             let totalAttendance = 0;
             let totalMissed = 0;
 
+            // Используем DocumentFragment для улучшения производительности
+            const fragment = document.createDocumentFragment();
+
             subjects.forEach(subject => {
                 totalGrade += subject.grade;
                 totalAttendance += parseInt(subject.attendance);
@@ -862,8 +976,10 @@
                     </div>
                 `;
 
-                subjectsList.appendChild(subjectEl);
+                fragment.appendChild(subjectEl);
             });
+
+            subjectsList.appendChild(fragment);
 
             // Calculate averages
             const avgGrade = (totalGrade / subjects.length).toFixed(1);
@@ -882,6 +998,9 @@
             const chart = document.getElementById('attendanceChart');
             chart.innerHTML = '';
             
+            // Используем DocumentFragment для улучшения производительности
+            const fragment = document.createDocumentFragment();
+            
             subjects.forEach(subject => {
                 const attendanceValue = parseInt(subject.attendance);
                 const barHeight = (attendanceValue / 100) * 180;
@@ -895,8 +1014,10 @@
                 label.textContent = subject.name.substring(0, 3);
                 
                 bar.appendChild(label);
-                chart.appendChild(bar);
+                fragment.appendChild(bar);
             });
+            
+            chart.appendChild(fragment);
         }
 
         // PWA Installation
@@ -928,45 +1049,32 @@
         window.addEventListener('appinstalled', () => {
             installBtn.style.display = 'none';
             deferredPrompt = null;
+            console.log('PWA was installed');
         });
+
+        // Handle offline/online status
+        function updateOnlineStatus() {
+            const offlineMessage = document.getElementById('offlineMessage');
+            if (!navigator.onLine) {
+                offlineMessage.style.display = 'block';
+                showError('Отсутствует интернет-соединение. Данные могут быть неактуальны.');
+            } else {
+                offlineMessage.style.display = 'none';
+                showSuccess('Соединение восстановлено');
+            }
+        }
 
         // Register Service Worker for PWA functionality
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                // Register service worker with correct scope for GitHub Pages
-                navigator.serviceWorker.register('sw.js', { scope: './' })
-                .then(function(registration) {
-                    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                })
-                .catch(function(err) {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
-        }
-
-        // Handle offline/online status
-        window.addEventListener('online', function() {
-            showSuccess('Соединение восстановлено');
-        });
-
-        window.addEventListener('offline', function() {
-            showError('Отсутствует интернет-соединение');
-        });
-    </script>
-
-    <!-- Service Worker Registration -->
-    <script>
-        // Register service worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                // Create a simple service worker inline
-                const swContent = `
-                    const CACHE_NAME = 'dgu-student-app-v2';
+                // Create service worker code as a string
+                const swCode = `
+                    const CACHE_NAME = 'dgu-student-app-v3';
                     const urlsToCache = [
                         '/',
-                        '/index.html',
-                        '/styles.css',
-                        '/app.js',
+                        './index.html',
+                        './styles.css',
+                        './app.js',
                         'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSI0MCIgZmlsbD0iIzFhMjM3ZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSI4MCIgZm9udC13ZWlnaHQ9ImJvbGQiPtCU0LPQsDwvdGV4dD48L3N2Zz4='
                     ];
 
@@ -980,24 +1088,55 @@
                     });
 
                     self.addEventListener('fetch', function(event) {
-                        event.respondWith(
-                            caches.match(event.request)
-                                .then(function(response) {
-                                    if (response) {
+                        if (event.request.url.indexOf('http://studstat.dgu.ru') !== -1) {
+                            // Для запросов к API пробуем сеть сначала, потом кеш
+                            event.respondWith(
+                                fetch(event.request)
+                                    .then(function(response) {
+                                        // Клонируем ответ, потому что он может быть использован только один раз
+                                        const responseToCache = response.clone();
+                                        caches.open(CACHE_NAME)
+                                            .then(function(cache) {
+                                                cache.put(event.request, responseToCache);
+                                            });
                                         return response;
-                                    }
-                                    return fetch(event.request);
-                                })
+                                    })
+                                    .catch(function() {
+                                        return caches.match(event.request);
+                                    })
+                            );
+                        } else {
+                            // Для остальных запросов сначала кеш, потом сеть
+                            event.respondWith(
+                                caches.match(event.request)
+                                    .then(function(response) {
+                                        return response || fetch(event.request);
+                                    })
+                            );
+                        }
+                    });
+
+                    self.addEventListener('activate', function(event) {
+                        event.waitUntil(
+                            caches.keys().then(function(cacheNames) {
+                                return Promise.all(
+                                    cacheNames.map(function(cacheName) {
+                                        if (cacheName !== CACHE_NAME) {
+                                            return caches.delete(cacheName);
+                                        }
+                                    })
+                                );
+                            })
                         );
                     });
                 `;
-                
+
                 // Create a Blob from the service worker code
-                const blob = new Blob([swContent], { type: 'application/javascript' });
+                const blob = new Blob([swCode], { type: 'application/javascript' });
                 const swURL = URL.createObjectURL(blob);
                 
                 // Register the service worker
-                navigator.serviceWorker.register(swURL, { scope: './' })
+                navigator.serviceWorker.register(swURL)
                     .then(function(registration) {
                         console.log('ServiceWorker registration successful with scope: ', registration.scope);
                     })
@@ -1006,6 +1145,32 @@
                     });
             });
         }
+
+        // Preload critical resources
+        function preloadCriticalResources() {
+            const resources = [
+                'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSI0MCIgZmlsbD0iIzFhMjM3ZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSI4MCIgZm9udC13ZWlnaHQ9ImJvbGQiPtCU0LPQsDwvdGV4dD48L3N2Zz4='
+            ];
+            
+            resources.forEach(resource => {
+                const link = document.createElement('link');
+                link.rel = 'preload';
+                link.href = resource;
+                link.as = 'image';
+                document.head.appendChild(link);
+            });
+        }
+
+        // Initialize on DOM content loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            preloadCriticalResources();
+            
+            // Check if app is launched from home screen
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                console.log('Launched from home screen');
+                document.body.classList.add('standalone');
+            }
+        });
     </script>
 </body>
 </html>
