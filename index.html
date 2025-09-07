@@ -6,37 +6,50 @@
     <meta name="theme-color" content="#1a237e">
     <title>ДГУ - Успеваемость</title>
     <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSI0MCIgZmlsbD0iIzFhMjM3ZSIvPjx0ZXh0CB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0id2hpdGUiIGZvbnQtc2l6ZT0iODAiIGZvbnQtd2VpZ2h0PSJib2xkIj7QlNCz0LA8L3RleHQ+PC9zdmc+">
     <style>
         :root {
             --primary: #1a237e;
+            --primary-light: #534bae;
+            --primary-dark: #000051;
             --secondary: #3949ab;
             --accent: #ff4081;
             --text: #212121;
+            --text-light: #757575;
             --background: #f5f5f5;
             --card-bg: #ffffff;
             --success: #4caf50;
             --warning: #ff9800;
             --danger: #f44336;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
         }
 
         [data-theme="dark"] {
             --primary: #121858;
+            --primary-light: #534bae;
+            --primary-dark: #00002a;
             --secondary: #283593;
             --accent: #ff4081;
             --text: #e0e0e0;
+            --text-light: #9e9e9e;
             --background: #121212;
             --card-bg: #1e1e1e;
             --success: #388e3c;
             --warning: #f57c00;
             --danger: #d32f2f;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
 
         [data-theme="nature"] {
             --primary: #1b5e20;
+            --primary-light: #4c8c4a;
+            --primary-dark: #003300;
             --secondary: #2e7d32;
             --accent: #ff6d00;
             --text: #212121;
+            --text-light: #757575;
             --background: #e8f5e9;
             --card-bg: #ffffff;
             --success: #2e7d32;
@@ -46,9 +59,12 @@
 
         [data-theme="sunset"] {
             --primary: #d50000;
+            --primary-light: #ff5131;
+            --primary-dark: #9b0000;
             --secondary: #ff5131;
             --accent: #ffab00;
             --text: #212121;
+            --text-light: #757575;
             --background: #fff3e0;
             --card-bg: #ffffff;
             --success: #64dd17;
@@ -60,7 +76,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: background-color 0.3s, color 0.3s;
+            transition: var(--transition);
         }
 
         body {
@@ -68,6 +84,8 @@
             background-color: var(--background);
             color: var(--text);
             line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 80px;
         }
 
         .container {
@@ -81,7 +99,7 @@
             color: white;
             padding: 20px 0;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
             position: relative;
         }
 
@@ -135,10 +153,10 @@
             position: absolute;
             top: 50px;
             right: 0;
-            background: white;
-            border-radius: 8px;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
             padding: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            box-shadow: var(--shadow);
             display: none;
             z-index: 100;
             width: 150px;
@@ -154,10 +172,11 @@
             padding: 8px;
             cursor: pointer;
             border-radius: 4px;
+            color: var(--text);
         }
 
         .theme-option:hover {
-            background: #f5f5f5;
+            background: var(--background);
         }
 
         .theme-color {
@@ -185,32 +204,34 @@
 
         .login-form {
             background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 20px;
-            margin: 20px auto;
-            max-width: 400px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin: 30px auto;
+            max-width: 450px;
+            box-shadow: var(--shadow);
         }
 
         .form-title {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             color: var(--primary);
+            font-size: 1.5rem;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: 500;
+            color: var(--text);
         }
 
         input {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 16px;
@@ -218,9 +239,15 @@
             color: var(--text);
         }
 
+        input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(26, 35, 126, 0.2);
+        }
+
         button {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             border: none;
@@ -233,7 +260,12 @@
 
         button:active {
             transform: scale(0.98);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        button.secondary {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
         }
 
         .dashboard {
@@ -244,40 +276,48 @@
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            border-radius: var(--border-radius);
+            margin-bottom: 25px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .logout-btn {
             background: rgba(255, 255, 255, 0.2);
             border: none;
-            padding: 8px 15px;
+            padding: 10px 18px;
             border-radius: 20px;
             color: white;
             cursor: pointer;
             width: auto;
+            margin-top: 10px;
         }
 
         .stats {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 20px;
+            margin-bottom: 25px;
         }
 
         .stat-card {
             background-color: var(--card-bg);
-            border-radius: 12px;
-            padding: 15px;
+            border-radius: var(--border-radius);
+            padding: 20px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-title {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 10px;
         }
 
         .stat-value {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: bold;
             margin: 10px 0;
             color: var(--primary);
@@ -285,13 +325,22 @@
 
         .subjects {
             background-color: var(--card-bg);
-            border-radius: 12px;
+            border-radius: var(--border-radius);
             padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
         }
 
         .subject {
-            padding: 15px 0;
+            padding: 18px 0;
             border-bottom: 1px solid #eee;
         }
 
@@ -301,23 +350,33 @@
 
         .subject-name {
             font-weight: 500;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            color: var(--text);
         }
 
         .subject-info {
             display: flex;
             justify-content: space-between;
-            color: #666;
+            color: var(--text-light);
             font-size: 14px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .subject-stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .grade {
             display: inline-block;
-            padding: 2px 8px;
-            border-radius: 12px;
+            padding: 4px 10px;
+            border-radius: 16px;
             background-color: var(--success);
             color: white;
             font-weight: 500;
+            font-size: 14px;
         }
 
         .grade.warning {
@@ -330,8 +389,8 @@
 
         .install-btn {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 30px;
+            right: 30px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             border: none;
@@ -339,37 +398,161 @@
             width: 60px;
             height: 60px;
             font-size: 24px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            box-shadow: var(--shadow);
             cursor: pointer;
             display: none;
             z-index: 1000;
-        }
-
-        @media (max-width: 768px) {
-            .stats {
-                grid-template-columns: 1fr;
-            }
+            align-items: center;
+            justify-content: center;
         }
 
         .loading {
             display: none;
             text-align: center;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
         .spinner {
             border: 4px solid rgba(0, 0, 0, 0.1);
             border-left: 4px solid var(--primary);
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             animation: spin 1s linear infinite;
-            margin: 0 auto;
+            margin: 0 auto 20px;
         }
 
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background-color: #ffebee;
+            color: #c62828;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: none;
+            text-align: center;
+        }
+
+        .success-message {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: none;
+            text-align: center;
+        }
+
+        .semester-selector {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .semester-btn {
+            padding: 10px 15px;
+            border-radius: 20px;
+            background: var(--card-bg);
+            border: 1px solid #ddd;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        .semester-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border-color: transparent;
+        }
+
+        .attendance-chart {
+            height: 200px;
+            margin: 20px 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 10px;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+        }
+
+        .chart-bar {
+            width: 30px;
+            background: linear-gradient(to top, var(--primary), var(--secondary));
+            border-radius: 4px 4px 0 0;
+            position: relative;
+        }
+
+        .chart-label {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 12px;
+            color: var(--text);
+        }
+
+        @media (max-width: 768px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .subject-info {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .user-info {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .logout-btn {
+                align-self: flex-end;
+            }
+        }
+
+        /* Анимации */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* Иконки */
+        .icon {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .icon-user {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
+        }
+
+        .icon-book {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z'/%3E%3C/svg%3E");
+        }
+
+        .icon-grade {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a237e'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/%3E%3C/svg%3E");
+        }
+
+        .icon-attendance {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a237e'%3E%3Cpath d='M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z'/%3E%3C/svg%3E");
         }
     </style>
 </head>
@@ -405,6 +588,9 @@
     </header>
 
     <div class="container">
+        <div class="error-message" id="errorMessage"></div>
+        <div class="success-message" id="successMessage"></div>
+
         <div class="login-form" id="loginForm">
             <h2 class="form-title">Вход в систему</h2>
             <div class="form-group">
@@ -424,6 +610,9 @@
                 <input type="text" id="recordBook" placeholder="Введите номер зачетной книжки">
             </div>
             <button id="loginBtn">Войти</button>
+            <p style="text-align: center; margin-top: 20px; color: var(--text-light);">
+                Используйте те же данные, что и на сайте <a href="http://studstat.dgu.ru" style="color: var(--primary);">studstat.dgu.ru</a>
+            </p>
         </div>
 
         <div class="loading" id="loading">
@@ -434,29 +623,43 @@
         <div class="dashboard" id="dashboard">
             <div class="user-info">
                 <div>
-                    <h2 id="userName">Иванов Иван Иванович</h2>
-                    <p>Зачетная книжка: <span id="userRecordBook">123456</span></p>
+                    <h2><span class="icon icon-user"></span> <span id="userName">Иванов Иван Иванович</span></h2>
+                    <p><span class="icon icon-book"></span> Зачетная книжка: <span id="userRecordBook">123456</span></p>
                 </div>
                 <button class="logout-btn" id="logoutBtn">Выйти</button>
             </div>
 
+            <div class="semester-selector" id="semesterSelector">
+                <button class="semester-btn active" data-semester="1">1 семестр</button>
+                <button class="semester-btn" data-semester="2">2 семестр</button>
+                <button class="semester-btn" data-semester="3">3 семестр</button>
+                <button class="semester-btn" data-semester="4">4 семестр</button>
+            </div>
+
             <div class="stats">
-                <div class="stat-card">
-                    <p>Средний балл</p>
-                    <div class="stat-value" id="averageGrade">4.5</div>
+                <div class="stat-card fade-in">
+                    <p class="stat-title"><span class="icon icon-grade"></span> Средний балл</p>
+                    <div class="stat-value" id="averageGrade">0.0</div>
                     <p>из 5.0</p>
                 </div>
-                <div class="stat-card">
-                    <p>Посещаемость</p>
-                    <div class="stat-value" id="attendance">87%</div>
-                    <p>пропущено: <span id="missedClasses">5</span> пар</p>
+                <div class="stat-card fade-in">
+                    <p class="stat-title"><span class="icon icon-attendance"></span> Посещаемость</p>
+                    <div class="stat-value" id="attendance">0%</div>
+                    <p>пропущено: <span id="missedClasses">0</span> пар</p>
                 </div>
             </div>
 
             <div class="subjects">
-                <h3>Предметы и оценки</h3>
+                <h3 class="section-title">Предметы и оценки</h3>
                 <div id="subjectsList">
                     <!-- Subjects will be loaded here -->
+                </div>
+            </div>
+
+            <div class="subjects">
+                <h3 class="section-title">Статистика посещаемости</h3>
+                <div class="attendance-chart" id="attendanceChart">
+                    <!-- Chart will be loaded here -->
                 </div>
             </div>
         </div>
@@ -483,24 +686,48 @@
         const savedTheme = localStorage.getItem('theme') || 'default';
         document.documentElement.setAttribute('data-theme', savedTheme);
 
+        // Show error message
+        function showError(message) {
+            const errorElement = document.getElementById('errorMessage');
+            errorElement.textContent = message;
+            errorElement.style.display = 'block';
+            setTimeout(() => {
+                errorElement.style.display = 'none';
+            }, 5000);
+        }
+
+        // Show success message
+        function showSuccess(message) {
+            const successElement = document.getElementById('successMessage');
+            successElement.textContent = message;
+            successElement.style.display = 'block';
+            setTimeout(() => {
+                successElement.style.display = 'none';
+            }, 3000);
+        }
+
         // Login functionality
         document.getElementById('loginBtn').addEventListener('click', function() {
-            const lastName = document.getElementById('lastName').value;
-            const firstName = document.getElementById('firstName').value;
-            const middleName = document.getElementById('middleName').value;
-            const recordBook = document.getElementById('recordBook').value;
+            const lastName = document.getElementById('lastName').value.trim();
+            const firstName = document.getElementById('firstName').value.trim();
+            const middleName = document.getElementById('middleName').value.trim();
+            const recordBook = document.getElementById('recordBook').value.trim();
 
             if (!lastName || !firstName || !recordBook) {
-                alert('Пожалуйста, заполните все обязательные поля');
+                showError('Пожалуйста, заполните все обязательные поля');
                 return;
             }
 
             // Show loading
             document.getElementById('loginForm').style.display = 'none';
             document.getElementById('loading').style.display = 'block';
+            document.getElementById('errorMessage').style.display = 'none';
 
-            // Simulate loading data
+            // Simulate API request to studstat.dgu.ru
             setTimeout(() => {
+                // In a real application, you would make a fetch request to the studstat.dgu.ru API
+                // For demonstration purposes, we're using a simulation
+                
                 // Save user data
                 localStorage.setItem('user', JSON.stringify({
                     lastName,
@@ -519,7 +746,9 @@
                 // Show dashboard
                 document.getElementById('loading').style.display = 'none';
                 document.getElementById('dashboard').style.display = 'block';
-            }, 1500);
+                
+                showSuccess('Добро пожаловать! Данные успешно загружены.');
+            }, 2000);
         });
 
         // Logout functionality
@@ -535,6 +764,16 @@
             document.getElementById('recordBook').value = '';
         });
 
+        // Semester selection
+        document.querySelectorAll('.semester-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.semester-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const semester = this.getAttribute('data-semester');
+                loadSampleData(semester);
+            });
+        });
+
         // Check if user is already logged in
         window.addEventListener('load', function() {
             const user = JSON.parse(localStorage.getItem('user') || 'null');
@@ -548,16 +787,44 @@
         });
 
         // Sample data for demonstration
-        function loadSampleData() {
-            const subjects = [
-                { name: 'Математика', grade: 5, attendance: '95%', missed: 1 },
-                { name: 'Физика', grade: 4, attendance: '85%', missed: 3 },
-                { name: 'Информатика', grade: 5, attendance: '100%', missed: 0 },
-                { name: 'История', grade: 3, attendance: '75%', missed: 5 },
-                { name: 'Английский язык', grade: 4, attendance: '90%', missed: 2 },
-                { name: 'Физкультура', grade: 5, attendance: '100%', missed: 0 }
-            ];
+        function loadSampleData(semester = '1') {
+            // Different data for different semesters
+            const semesterData = {
+                '1': [
+                    { name: 'Математика', grade: 5, attendance: '95%', missed: 1 },
+                    { name: 'Физика', grade: 4, attendance: '85%', missed: 3 },
+                    { name: 'Информатика', grade: 5, attendance: '100%', missed: 0 },
+                    { name: 'История', grade: 3, attendance: '75%', missed: 5 },
+                    { name: 'Английский язык', grade: 4, attendance: '90%', missed: 2 },
+                    { name: 'Физкультура', grade: 5, attendance: '100%', missed: 0 }
+                ],
+                '2': [
+                    { name: 'Высшая математика', grade: 4, attendance: '90%', missed: 2 },
+                    { name: 'Теоретическая физика', grade: 3, attendance: '80%', missed: 4 },
+                    { name: 'Программирование', grade: 5, attendance: '100%', missed: 0 },
+                    { name: 'Философия', grade: 4, attendance: '85%', missed: 3 },
+                    { name: 'Иностранный язык', grade: 5, attendance: '95%', missed: 1 },
+                    { name: 'Физкультура', grade: 5, attendance: '100%', missed: 0 }
+                ],
+                '3': [
+                    { name: 'Дифференциальные уравнения', grade: 4, attendance: '88%', missed: 3 },
+                    { name: 'Теория вероятностей', grade: 5, attendance: '92%', missed: 2 },
+                    { name: 'Базы данных', grade: 5, attendance: '100%', missed: 0 },
+                    { name: 'Web-технологии', grade: 4, attendance: '90%', missed: 2 },
+                    { name: 'Экономика', grade: 3, attendance: '78%', missed: 5 },
+                    { name: 'Физкультура', grade: 5, attendance: '100%', missed: 0 }
+                ],
+                '4': [
+                    { name: 'Математический анализ', grade: 4, attendance: '85%', missed: 4 },
+                    { name: 'Теория алгоритмов', grade: 5, attendance: '95%', missed: 1 },
+                    { name: 'Компьютерные сети', grade: 4, attendance: '90%', missed: 2 },
+                    { name: 'Операционные системы', grade: 5, attendance: '100%', missed: 0 },
+                    { name: 'Правоведение', grade: 3, attendance: '80%', missed: 4 },
+                    { name: 'Физкультура', grade: 5, attendance: '100%', missed: 0 }
+                ]
+            };
 
+            const subjects = semesterData[semester] || semesterData['1'];
             const subjectsList = document.getElementById('subjectsList');
             subjectsList.innerHTML = '';
 
@@ -571,7 +838,7 @@
                 totalMissed += subject.missed;
 
                 const subjectEl = document.createElement('div');
-                subjectEl.className = 'subject';
+                subjectEl.className = 'subject fade-in';
                 
                 let gradeClass = '';
                 if (subject.grade < 3) gradeClass = 'danger';
@@ -580,9 +847,18 @@
                 subjectEl.innerHTML = `
                     <div class="subject-name">${subject.name}</div>
                     <div class="subject-info">
-                        <span>Оценка: <span class="grade ${gradeClass}">${subject.grade}</span></span>
-                        <span>Посещаемость: ${subject.attendance}</span>
-                        <span>Пропущено: ${subject.missed} пар</span>
+                        <div class="subject-stat">
+                            <span>Оценка:</span>
+                            <span class="grade ${gradeClass}">${subject.grade}</span>
+                        </div>
+                        <div class="subject-stat">
+                            <span>Посещаемость:</span>
+                            <span>${subject.attendance}</span>
+                        </div>
+                        <div class="subject-stat">
+                            <span>Пропущено:</span>
+                            <span>${subject.missed} пар</span>
+                        </div>
                     </div>
                 `;
 
@@ -596,6 +872,31 @@
             document.getElementById('averageGrade').textContent = avgGrade;
             document.getElementById('attendance').textContent = `${avgAttendance}%`;
             document.getElementById('missedClasses').textContent = totalMissed;
+
+            // Update chart
+            updateAttendanceChart(subjects);
+        }
+
+        // Update attendance chart
+        function updateAttendanceChart(subjects) {
+            const chart = document.getElementById('attendanceChart');
+            chart.innerHTML = '';
+            
+            subjects.forEach(subject => {
+                const attendanceValue = parseInt(subject.attendance);
+                const barHeight = (attendanceValue / 100) * 180;
+                
+                const bar = document.createElement('div');
+                bar.className = 'chart-bar';
+                bar.style.height = `${barHeight}px`;
+                
+                const label = document.createElement('div');
+                label.className = 'chart-label';
+                label.textContent = subject.name.substring(0, 3);
+                
+                bar.appendChild(label);
+                chart.appendChild(bar);
+            });
         }
 
         // PWA Installation
@@ -614,9 +915,9 @@
                 deferredPrompt.prompt();
                 deferredPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
-                        console.log('User accepted the install prompt');
+                        showSuccess('Приложение успешно установлено!');
                     } else {
-                        console.log('User dismissed the install prompt');
+                        showError('Установка отменена');
                     }
                     deferredPrompt = null;
                 });
@@ -625,7 +926,6 @@
         }
 
         window.addEventListener('appinstalled', () => {
-            console.log('PWA was installed');
             installBtn.style.display = 'none';
             deferredPrompt = null;
         });
@@ -633,11 +933,77 @@
         // Register Service Worker for PWA functionality
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', function() {
-                navigator.serviceWorker.register('sw.js').then(function(registration) {
+                // Register service worker with correct scope for GitHub Pages
+                navigator.serviceWorker.register('sw.js', { scope: './' })
+                .then(function(registration) {
                     console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                }, function(err) {
+                })
+                .catch(function(err) {
                     console.log('ServiceWorker registration failed: ', err);
                 });
+            });
+        }
+
+        // Handle offline/online status
+        window.addEventListener('online', function() {
+            showSuccess('Соединение восстановлено');
+        });
+
+        window.addEventListener('offline', function() {
+            showError('Отсутствует интернет-соединение');
+        });
+    </script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        // Register service worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                // Create a simple service worker inline
+                const swContent = `
+                    const CACHE_NAME = 'dgu-student-app-v2';
+                    const urlsToCache = [
+                        '/',
+                        '/index.html',
+                        '/styles.css',
+                        '/app.js',
+                        'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSI0MCIgZmlsbD0iIzFhMjM3ZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSI4MCIgZm9udC13ZWlnaHQ9ImJvbGQiPtCU0LPQsDwvdGV4dD48L3N2Zz4='
+                    ];
+
+                    self.addEventListener('install', function(event) {
+                        event.waitUntil(
+                            caches.open(CACHE_NAME)
+                                .then(function(cache) {
+                                    return cache.addAll(urlsToCache);
+                                })
+                        );
+                    });
+
+                    self.addEventListener('fetch', function(event) {
+                        event.respondWith(
+                            caches.match(event.request)
+                                .then(function(response) {
+                                    if (response) {
+                                        return response;
+                                    }
+                                    return fetch(event.request);
+                                })
+                        );
+                    });
+                `;
+                
+                // Create a Blob from the service worker code
+                const blob = new Blob([swContent], { type: 'application/javascript' });
+                const swURL = URL.createObjectURL(blob);
+                
+                // Register the service worker
+                navigator.serviceWorker.register(swURL, { scope: './' })
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(function(err) {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
             });
         }
     </script>
