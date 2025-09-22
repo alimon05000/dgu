@@ -3,73 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#1a237e">
-    <title>ДГУ - Успеваемость</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSI0MCIgZmlsbD0iIzFhMjM3ZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSI4MCIgZm9udC13ZWlnaHQ9ImJvbGQiPtCU0LPQsDwvdGV4dD48L3N2Zz4=">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#000">
+    <title>Расписание группы</title>
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTUwIiBoZWlnaHQ9IjE1MCIgZmlsbD0iIzAwNzZmNiIgcng9IjIwIi8+PHRleHQgeD0iNTAiIHk9IjgwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iNDAiIGZpbGw9IiNmZmYiPlI8L3RleHQ+PC9zdmc+">
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogItCg0LDRgdGB0LvRjNCy0LDRjtCJINCy0L7RgdGC0LDQstC70Y/QvdC+0LUg0L/RgNC+0YTQtdGB0YHQuNC+0L3QsNC70YzQvdC+0LkiLAogICJzaG9ydF9uYW1lIjogItCg0LDRgdGB0LvRjNCy0LDRjiIsCiAgInN0YXJ0X3VybCIgOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbDtiYXNlNjQsUEhOMlp5QjRiV3h1Y3owaWFIUjBjRG92TDNkM2R5NTNNeTV2Y21jdk1qQXdNQzl6ZG1jaUlIZHBaSFJvUFNJeE1EQWxJaUJvWldsbmFIUTlJakV3TUNVaUlHWnBiR3c5SW1Kc1lTd2dZMjl1ZEdWdWRDQTlJbU52YlM5cGJYQnNZV2x1Wnk5cGJYQnNZV2x1WnlJZ1ptbHlkRDBpWVhCd2JHbGpZWFJwYjI0aUlIaHRiRzVjOVhWelpTazdJQzgrUEhCaGRHZ2daRDBpVFRBd01EQWxNakF3TkNBeE1EQXdYekF3TURBd0lERXdNREF3SURFeE1EQWxNREF3TURBaUlITjBlV3hsUFNKbWFXeHNJajQ4YzNSNWJHVStMbU52YlM5cGJYQnNZV2x1Wnk5cGJYQnNZV2x1WnlJZ1ptbHlkRDBpWVhCd2JHbGpZWFJwYjI0aUlIaHRiRzVjOVhWelpTazdJQzgrUEhCaGRHZ2daRDBpVFRBd01EQWxNakF3TkNBeE1EQXdYekF3TURBd0lERXdNREF3SURFeE1EQWxNREF3TURBaUlITjBlV3hsUFNKbWFXeHNJajQ4YzNSNWJHVStMbU52YlM5cGJYQnNZV2x1Wnk5cGJYQnNZV2x1WnlJZ1ptbHlkRDBpWVhCd2JHbGpZWFJwYjI0aUlIaHRiRzVjOVhWelpTazdJQzgrUEhCaGRHZ2daRDBpVFRBd01EQWxNakF3TkNBeE1EQXdYekF3TURBd0lERXdNREF3SURFeE1EQWxNREF3TURBaUlITjBlV3hsUFNKbWFXeHNJajQ4YzNSNWJHVStMbU52YlM5cGJYQnNZV2x1Wnk5cGJYQnNZV2x1WnlJZ1ptbHlkRDBpWVhCd2JHbGpZWFJwYjI0aUlIaHRiRzVjOVhWelpTazdJQzgrUEhCaGRHZ2daRDBpVFRBd01EQWxNakF3TkNBeE1EQXdYekF3TURBd0lERXdNREF3SURFeE1EQWxNREF3TURBaUlITjBlV3hsUFNKbWFXeHNJajQ4YzNSNWJHVStQZz09IiwKICAgICAgInNpemVzIjogIjE0NHgxNDQiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciCiAgICB9CiAgXQp9">
     <style>
         :root {
-            --primary: #1a237e;
-            --primary-light: #534bae;
-            --primary-dark: #000051;
-            --secondary: #3949ab;
-            --accent: #ff4081;
-            --text: #212121;
-            --text-light: #757575;
-            --background: #f5f5f5;
+            --primary: #0076f6;
+            --secondary: #6c757d;
+            --success: #28a745;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --info: #17a2b8;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --background: #ffffff;
+            --text: #212529;
             --card-bg: #ffffff;
-            --success: #4caf50;
-            --warning: #ff9800;
-            --danger: #f44336;
-            --border-radius: 12px;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --card-shadow: rgba(0, 0, 0, 0.1);
+            --border-radius: 16px;
             --transition: all 0.3s ease;
+            
+            /* Цвета для темы жидкого стекла */
+            --accent: #0A84FF;
+            --green: #30D158;
+            --yellow: #FFD60A;
+            --red: #FF453A;
+            --text-primary: rgba(0,0,0,.9);
+            --text-secondary: rgba(0,0,0,.6);
+            
+            /* Новые переменные для улучшенного дизайна */
+            --gradient-primary: linear-gradient(135deg, #0076f6 0%, #00a8ff 100%);
+            --gradient-secondary: linear-gradient(135deg, #6c757d 0%, #8d99a6 100%);
+            --gradient-success: linear-gradient(135deg, #28a745 0%, #34ce57 100%);
+            --gradient-danger: linear-gradient(135deg, #dc3545 0%, #e83e8c 100%);
+            --gradient-warning: linear-gradient(135deg, #ffc107 0%, #ffd54f 100%);
+            --gradient-info: linear-gradient(135deg, #17a2b8 0%, #6f42c1 100%);
+            --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 8px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.15);
+            --shadow-xl: 0 20px 40px rgba(0,0,0,0.2);
         }
 
-        [data-theme="dark"] {
-            --primary: #121858;
-            --primary-light: #534bae;
-            --primary-dark: #00002a;
-            --secondary: #283593;
-            --accent: #ff4081;
-            --text: #e0e0e0;
-            --text-light: #9e9e9e;
-            --background: #121212;
-            --card-bg: #1e1e1e;
-            --success: #388e3c;
-            --warning: #f57c00;
-            --danger: #d32f2f;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        .theme-glass {
+            --background: linear-gradient(135deg, #8ec5fc 0%, #e0c3fc 100%);
+            --card-bg: rgba(255, 255, 255, 0.25);
+            --card-shadow: rgba(0, 0, 0, 0.1);
+            --text: rgba(0, 0, 0, 0.9);
+            --primary: #7b68ee;
+            --secondary: rgba(0, 0, 0, 0.7);
+            --border-radius: 20px;
+            --text-primary: rgba(0, 0, 0, 0.9);
+            --text-secondary: rgba(0, 0, 0, 0.7);
+            --gradient-primary: linear-gradient(135deg, #7b68ee 0%, #6a5acd 100%);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            background-color: rgba(255, 255, 255, 0.1);
         }
 
-        [data-theme="nature"] {
-            --primary: #1b5e20;
-            --primary-light: #4c8c4a;
-            --primary-dark: #003300;
-            --secondary: #2e7d32;
-            --accent: #ff6d00;
-            --text: #212121;
-            --text-light: #757575;
-            --background: #e8f5e9;
+        .theme-dark {
+            --background: #1a1a1a;
+            --card-bg: rgba(0, 0, 0, 0.2);
+            --card-shadow: rgba(0, 0, 0, 0.3);
+            --text: rgba(255,255,255,.92);
+            --text-primary: rgba(255,255,255,.92);
+            --text-secondary: rgba(255,255,255,.6);
+            --gradient-primary: linear-gradient(135deg, #0A84FF 0%, #5E5CE6 100%);
+        }
+
+        .theme-nature {
+            --background: linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%);
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --card-shadow: rgba(0, 0, 0, 0.2);
+            --text: #1B5E20;
+            --primary: #388E3C;
+            --gradient-primary: linear-gradient(135deg, #388E3C 0%, #4CAF50 100%);
+        }
+
+        .theme-minimal {
+            --background: #f8f9fa;
             --card-bg: #ffffff;
-            --success: #2e7d32;
-            --warning: #f9a825;
-            --danger: #c62828;
-        }
-
-        [data-theme="sunset"] {
-            --primary: #d50000;
-            --primary-light: #ff5131;
-            --primary-dark: #9b0000;
-            --secondary: #ff5131;
-            --accent: #ffab00;
-            --text: #212121;
-            --text-light: #757575;
-            --background: #fff3e0;
-            --card-bg: #ffffff;
-            --success: #64dd17;
-            --warning: #ffab00;
-            --danger: #dd2c00;
+            --card-shadow: rgba(0, 0, 0, 0.05);
+            --text: #212529;
+            --primary: #495057;
+            --border-radius: 8px;
+            --gradient-primary: linear-gradient(135deg, #495057 0%, #6c757d 100%);
         }
 
         * {
@@ -80,73 +100,143 @@
         }
 
         body {
-            font-family: 'Roboto', 'Arial', sans-serif;
-            background-color: var(--background);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+            background: var(--background);
             color: var(--text);
-            line-height: 1.6;
             min-height: 100vh;
-            padding-bottom: 80px;
+            padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        .container {
-            max-width: 100%;
-            padding: 16px;
+        /* Фон с параллакс эффектом */
+        .parallax-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 40%, rgba(255, 255, 255, 0) 70%),
+                        radial-gradient(circle at 70% 60%, rgba(200, 220, 255, 0.3) 0%, rgba(200, 220, 255, 0.1) 30%, rgba(200, 220, 255, 0) 60%);
+            background-attachment: fixed;
+            pointer-events: none;
+        }
+
+        .theme-glass .parallax-bg {
+            background: radial-gradient(circle at 30% 40%, rgba(255, 255, 255, 0.6) 0%, rgba(240, 240, 240, 0.3) 40%, rgba(220, 220, 220, 0.1) 70%),
+                        radial-gradient(circle at 70% 60%, rgba(200, 220, 255, 0.5) 0%, rgba(180, 200, 240, 0.3) 30%, rgba(160, 180, 220, 0.1) 60%);
+        }
+
+        .theme-dark .parallax-bg {
+            background: radial-gradient(circle at 30% 40%, rgba(100, 100, 255, 0.2) 0%, rgba(80, 80, 200, 0.1) 40%, rgba(0, 0, 0, 0) 70%),
+                        radial-gradient(circle at 70% 60%, rgba(150, 100, 255, 0.2) 0%, rgba(120, 80, 200, 0.1) 30%, rgba(0, 0, 0, 0) 60%),
+                        #1a1a1a;
+        }
+
+        .app-container {
+            max-width: 600px;
             margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
         }
 
+        /* Улучшенный хедер */
         header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 20px 0;
-            text-align: center;
-            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 15px 0;
             position: relative;
         }
 
-        .logo-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .logo {
-            width: 80px;
-            height: 80px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            color: var(--primary);
-            font-size: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
         h1 {
-            font-size: 1.5rem;
-            margin-bottom: 5px;
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: -0.5px;
+        }
+
+        .theme-glass h1 {
+            background: linear-gradient(45deg, #7b68ee, #6a5acd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .week-indicator {
+            background: var(--card-bg);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-glass .week-indicator {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        .theme-dark .week-indicator {
+            background: rgba(0,0,0,.2);
+            box-shadow: var(--shadow-md);
         }
 
         .theme-selector {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            position: relative;
         }
 
-        .theme-btn {
-            background: rgba(255, 255, 255, 0.2);
+        .theme-button {
+            background: var(--card-bg);
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            cursor: pointer;
             display: flex;
-            justify-content: center;
             align-items: center;
-            color: white;
-            font-size: 20px;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .theme-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .theme-glass .theme-button {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        .theme-dark .theme-button {
+            background: rgba(0,0,0,.2);
+            box-shadow: var(--shadow-md);
         }
 
         .theme-options {
@@ -156,366 +246,451 @@
             background: var(--card-bg);
             border-radius: var(--border-radius);
             padding: 10px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-xl);
             display: none;
+            flex-direction: column;
+            gap: 10px;
             z-index: 100;
-            width: 150px;
+            width: 180px;
+            animation: slideDown 0.3s ease;
         }
 
-        .theme-options.show {
-            display: block;
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .theme-glass .theme-options {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .theme-dark .theme-options {
+            background: rgba(0,0,0,.2);
+            box-shadow: var(--shadow-md);
         }
 
         .theme-option {
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: left;
+            font-weight: 500;
             display: flex;
             align-items: center;
-            padding: 8px;
-            cursor: pointer;
-            border-radius: 4px;
-            color: var(--text);
+            gap: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .theme-glass .theme-option {
+            color: rgba(0, 0, 0, 0.8);
         }
 
         .theme-option:hover {
-            background: var(--background);
+            background: rgba(0,0,0,0.05);
+            transform: translateX(5px);
         }
 
-        .theme-color {
+        .theme-glass .theme-option:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .theme-option.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .theme-preview {
             width: 20px;
             height: 20px;
             border-radius: 50%;
-            margin-right: 10px;
+            border: 2px solid rgba(0,0,0,0.1);
         }
 
-        .theme-default .theme-color {
-            background: linear-gradient(135deg, #1a237e, #3949ab);
+        /* Улучшенная навигация по дням */
+        .day-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            overflow-x: auto;
+            padding: 10px 5px;
+            scrollbar-width: none;
+            gap: 8px;
         }
 
-        .theme-dark .theme-color {
-            background: linear-gradient(135deg, #121858, #283593);
+        .day-navigation::-webkit-scrollbar {
+            display: none;
         }
 
-        .theme-nature .theme-color {
-            background: linear-gradient(135deg, #1b5e20, #2e7d32);
+        .day-button {
+            padding: 14px 16px;
+            border-radius: var(--border-radius);
+            background: var(--card-bg);
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text);
+            white-space: nowrap;
+            box-shadow: var(--shadow-sm);
+            flex: 1;
+            min-width: 70px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .theme-sunset .theme-color {
-            background: linear-gradient(135deg, #d50000, #ff5131);
+        .day-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
         }
 
-        .login-form {
-            background-color: var(--card-bg);
+        .day-button:hover::before {
+            left: 100%;
+        }
+
+        .day-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .theme-glass .day-button {
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: rgba(0, 0, 0, 0.8);
+        }
+
+        .theme-dark .day-button {
+            background: rgba(0,0,0,.2);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .day-button.active {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-2px);
+        }
+
+        .theme-glass .day-button.active {
+            background: linear-gradient(135deg, #7b68ee, #6a5acd);
+            box-shadow: 0 6px 15px rgba(123, 104, 238, 0.4);
+        }
+
+        .day-button.today {
+            border: 2px solid var(--primary);
+        }
+
+        /* Улучшенный контейнер расписания */
+        .schedule-container {
+            background: var(--card-bg);
             border-radius: var(--border-radius);
             padding: 25px;
-            margin: 30px auto;
-            max-width: 450px;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-lg);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .form-title {
-            text-align: center;
-            margin-bottom: 25px;
-            color: var(--primary);
+        .schedule-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .theme-glass .schedule-container {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: var(--shadow-lg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .theme-dark .schedule-container {
+            background: rgba(0,0,0,.2);
+            box-shadow: var(--shadow-md);
+        }
+
+        .day-title {
             font-size: 1.5rem;
-        }
-
-        .form-group {
             margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: var(--text);
-        }
-
-        input {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            background-color: var(--card-bg);
-            color: var(--text);
-        }
-
-        input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 2px rgba(26, 35, 126, 0.2);
-        }
-
-        button {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        button:active {
-            transform: scale(0.98);
-        }
-
-        button.secondary {
-            background: transparent;
-            border: 1px solid var(--primary);
-            color: var(--primary);
-        }
-
-        .dashboard {
-            display: none;
-        }
-
-        .user-info {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 20px;
-            border-radius: var(--border-radius);
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        .logout-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            padding: 10px 18px;
-            border-radius: 20px;
-            color: white;
-            cursor: pointer;
-            width: auto;
-            margin-top: 10px;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin-bottom: 25px;
-        }
-
-        .stat-card {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 20px;
             text-align: center;
-            box-shadow: var(--shadow);
-        }
-
-        .stat-title {
-            font-size: 1rem;
-            color: var(--text-light);
-            margin-bottom: 10px;
-        }
-
-        .stat-value {
-            font-size: 28px;
-            font-weight: bold;
-            margin: 10px 0;
-            color: var(--primary);
-        }
-
-        .subjects {
-            background-color: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 20px;
-            box-shadow: var(--shadow);
-            margin-bottom: 20px;
-        }
-
-        .section-title {
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-            color: var(--primary);
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .subject {
-            padding: 18px 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .subject:last-child {
-            border-bottom: none;
-        }
-
-        .subject-name {
-            font-weight: 500;
-            margin-bottom: 8px;
-            color: var(--text);
-        }
-
-        .subject-info {
-            display: flex;
-            justify-content: space-between;
-            color: var(--text-light);
-            font-size: 14px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .subject-stat {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .grade {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 16px;
-            background-color: var(--success);
-            color: white;
-            font-weight: 500;
-            font-size: 14px;
-        }
-
-        .grade.warning {
-            background-color: var(--warning);
-        }
-
-        .grade.danger {
-            background-color: var(--danger);
-        }
-
-        .install-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            font-size: 24px;
-            box-shadow: var(--shadow);
-            cursor: pointer;
-            display: none;
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left: 4px solid var(--primary);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .error-message {
-            background-color: #ffebee;
-            color: #c62828;
-            padding: 12px;
-            border-radius: 8px;
-            margin: 20px 0;
-            display: none;
-            text-align: center;
-        }
-
-        .success-message {
-            background-color: #e8f5e9;
-            color: #2e7d32;
-            padding: 12px;
-            border-radius: 8px;
-            margin: 20px 0;
-            display: none;
-            text-align: center;
-        }
-
-        .semester-selector {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .semester-btn {
-            padding: 10px 15px;
-            border-radius: 20px;
-            background: var(--card-bg);
-            border: 1px solid #ddd;
-            cursor: pointer;
-            color: var(--text);
-        }
-
-        .semester-btn.active {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border-color: transparent;
-        }
-
-        .attendance-chart {
-            height: 200px;
-            margin: 20px 0;
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-around;
-            padding: 10px;
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-        }
-
-        .chart-bar {
-            width: 30px;
-            background: linear-gradient(to top, var(--primary), var(--secondary));
-            border-radius: 4px 4px 0 0;
+            font-weight: 700;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary);
             position: relative;
         }
 
-        .chart-label {
+        .day-title::after {
+            content: '';
             position: absolute;
-            bottom: -25px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-size: 12px;
-            color: var(--text);
+            bottom: -2px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 3px;
         }
 
-        @media (max-width: 768px) {
-            .stats {
-                grid-template-columns: 1fr;
-            }
-            
-            .subject-info {
-                flex-direction: column;
-                gap: 8px;
-            }
-            
-            .user-info {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .logout-btn {
-                align-self: flex-end;
-            }
+        .theme-glass .day-title {
+            color: rgba(0, 0, 0, 0.9);
+        }
+
+        /* Улучшенные карточки занятий */
+        .lesson {
+            padding: 18px;
+            margin-bottom: 18px;
+            border-radius: 14px;
+            background: rgba(0,0,0,0.03);
+            border-left: 4px solid var(--primary);
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .lesson:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .theme-glass .lesson {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: var(--shadow-sm);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.25);
+            border-left: 4px solid #7b68ee;
+        }
+
+        .theme-dark .lesson {
+            background: rgba(0,0,0,.15);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .lesson-number {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            background: var(--gradient-primary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: var(--shadow-md);
+            z-index: 2;
+        }
+
+        .theme-glass .lesson-number {
+            background: linear-gradient(135deg, #7b68ee, #6a5acd);
+            box-shadow: var(--shadow-md);
+        }
+
+        .lesson-time {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .theme-glass .lesson-time {
+            color: #7b68ee;
+        }
+
+        .lesson-name {
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.15rem;
+            line-height: 1.4;
+        }
+
+        .theme-glass .lesson-name {
+            color: rgba(0, 0, 0, 0.9);
+        }
+
+        .lesson-type {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .lecture {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .theme-glass .lecture {
+            background: linear-gradient(135deg, #7b68ee, #6a5acd);
+            color: white;
+        }
+
+        .practice {
+            background: var(--gradient-success);
+            color: white;
+        }
+
+        .theme-glass .practice {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+        }
+
+        .seminar {
+            background: var(--gradient-warning);
+            color: white;
+        }
+
+        .theme-glass .seminar {
+            background: linear-gradient(135deg, #f6ad55, #ed8936);
+            color: white;
+        }
+
+        .lesson-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
+        .theme-glass .lesson-details {
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        .lesson-detail {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(0,0,0,0.05);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .theme-glass .lesson-detail {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .theme-dark .lesson-detail {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .empty-schedule {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--secondary);
+            font-style: italic;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .empty-icon {
+            font-size: 3rem;
+            opacity: 0.5;
+        }
+
+        .theme-glass .empty-schedule {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: var(--secondary);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .theme-glass footer {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        /* Улучшенные уведомления и кнопки */
+        .offline-notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--card-bg);
+            padding: 12px 24px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            animation: slideUp 0.5s ease;
+        }
+
+        @keyframes slideUp {
+            from { bottom: -100px; opacity: 0; }
+            to { bottom: 20px; opacity: 1; }
+        }
+        
+        .theme-glass .offline-notification {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.25);
+            color: rgba(0, 0, 0, 0.8);
+        }
+        
+        .refresh-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--gradient-primary);
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            z-index: 100;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .refresh-button:hover {
+            transform: translateY(-3px) rotate(15deg);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .theme-glass .refresh-button {
+            background: linear-gradient(135deg, #7b68ee, #6a5acd);
+            box-shadow: var(--shadow-lg);
         }
 
         /* Анимации */
@@ -524,653 +699,821 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .fade-in {
-            animation: fadeIn 0.5s ease forwards;
+        .schedule-container {
+            animation: fadeIn 0.5s ease;
         }
 
-        /* Иконки */
-        .icon {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            vertical-align: middle;
-            margin-right: 5px;
+        .lesson {
+            animation: fadeIn 0.5s ease;
+            animation-fill-mode: both;
         }
 
-        .icon-user {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
+        .lesson:nth-child(1) { animation-delay: 0.1s; }
+        .lesson:nth-child(2) { animation-delay: 0.2s; }
+        .lesson:nth-child(3) { animation-delay: 0.3s; }
+        .lesson:nth-child(4) { animation-delay: 0.4s; }
+        .lesson:nth-child(5) { animation-delay: 0.5s; }
+
+        /* Новые элементы: прогресс-бар дня */
+        .day-progress {
+            height: 4px;
+            background: rgba(0,0,0,0.1);
+            border-radius: 2px;
+            margin: 15px 0;
+            overflow: hidden;
         }
 
-        .icon-book {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z'/%3E%3C/svg%3E");
+        .day-progress-bar {
+            height: 100%;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+            transition: width 0.5s ease;
         }
 
-        .icon-grade {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a237e'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/%3E%3C/svg%3E");
+        /* Адаптивность */
+        @media (max-width: 480px) {
+            .app-container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .day-button {
+                padding: 12px 10px;
+                font-size: 0.9rem;
+                min-width: 60px;
+            }
+            
+            .lesson {
+                padding: 15px;
+            }
+            
+            .lesson-name {
+                font-size: 1rem;
+            }
+
+            .schedule-container {
+                padding: 20px;
+            }
+
+            .theme-glass .schedule-container {
+                padding: 20px;
+            }
+
+            .header-info {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+
+            .week-indicator {
+                align-self: flex-start;
+            }
         }
 
-        .icon-attendance {
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231a237e'%3E%3Cpath d='M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z'/%3E%3C/svg%3E");
-        }
-        
-        .offline-message {
+        /* Дополнительные улучшения для PWA */
+        .pwa-install-prompt {
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--warning);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            box-shadow: var(--shadow);
-            z-index: 1000;
+            bottom: 90px;
+            right: 20px;
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-xl);
+            z-index: 100;
             display: none;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 250px;
+            animation: slideUp 0.5s ease;
+        }
+
+        .pwa-install-prompt button {
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: none;
+            background: var(--gradient-primary);
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* Индикатор текущего времени */
+        .current-time-indicator {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--danger);
+            z-index: 1;
+            box-shadow: 0 0 5px var(--danger);
+        }
+
+        .current-time-indicator::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--danger);
+            border-radius: 50%;
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo-container">
-            <div class="logo">ДГУ</div>
-        </div>
-        <h1>Дагестанский Государственный Университет</h1>
-        <p>Проверьте свою успеваемость и посещаемость</p>
-        
-        <div class="theme-selector">
-            <button class="theme-btn">🎨</button>
-            <div class="theme-options">
-                <div class="theme-option theme-default" data-theme="default">
-                    <div class="theme-color"></div>
-                    <span>Стандартная</span>
+    <div class="parallax-bg"></div>
+    <div class="app-container">
+        <header>
+            <h1>Расписание</h1>
+            <div class="header-info">
+                <div class="week-indicator" id="weekIndicator">
+                    <span>📅</span>
+                    <span>Неделя 1</span>
                 </div>
-                <div class="theme-option theme-dark" data-theme="dark">
-                    <div class="theme-color"></div>
-                    <span>Тёмная</span>
-                </div>
-                <div class="theme-option theme-nature" data-theme="nature">
-                    <div class="theme-color"></div>
-                    <span>Природа</span>
-                </div>
-                <div class="theme-option theme-sunset" data-theme="sunset">
-                    <div class="theme-color"></div>
-                    <span>Закат</span>
+                <div class="theme-selector">
+                    <button class="theme-button" id="themeButton" aria-label="Сменить тему">🎨</button>
+                    <div class="theme-options" id="themeOptions">
+                        <div class="theme-option active" data-theme="default">
+                            <div class="theme-preview" style="background: #0076f6;"></div>
+                            Стандартная
+                        </div>
+                        <div class="theme-option" data-theme="glass">
+                            <div class="theme-preview" style="background: #7b68ee;"></div>
+                            Жидкое стекло
+                        </div>
+                        <div class="theme-option" data-theme="dark">
+                            <div class="theme-preview" style="background: #0A84FF;"></div>
+                            Тёмная
+                        </div>
+                        <div class="theme-option" data-theme="nature">
+                            <div class="theme-preview" style="background: #388E3C;"></div>
+                            Природа
+                        </div>
+                        <div class="theme-option" data-theme="minimal">
+                            <div class="theme-preview" style="background: #495057;"></div>
+                            Минимализм
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
+        </header>
 
-    <div class="container">
-        <div class="error-message" id="errorMessage"></div>
-        <div class="success-message" id="successMessage"></div>
-        <div class="offline-message" id="offlineMessage">Работаем в офлайн-режиме</div>
-
-        <div class="login-form" id="loginForm">
-            <h2 class="form-title">Вход в систему</h2>
-            <div class="form-group">
-                <label for="lastName">Фамилия</label>
-                <input type="text" id="lastName" placeholder="Введите вашу фамилию">
-            </div>
-            <div class="form-group">
-                <label for="firstName">Имя</label>
-                <input type="text" id="firstName" placeholder="Введите ваше имя">
-            </div>
-            <div class="form-group">
-                <label for="middleName">Отчество</label>
-                <input type="text" id="middleName" placeholder="Введите ваше отчество">
-            </div>
-            <div class="form-group">
-                <label for="recordBook">Номер зачетной книжки</label>
-                <input type="text" id="recordBook" placeholder="Введите номер зачетной книжки">
-            </div>
-            <button id="loginBtn">Войти</button>
-            <p style="text-align: center; margin-top: 20px; color: var(--text-light);">
-                Используйте те же данные, что и на сайте <a href="http://studstat.dgu.ru" style="color: var(--primary);">studstat.dgu.ru</a>
-            </p>
+        <div class="day-navigation">
+            <button class="day-button" data-day="0">Пн</button>
+            <button class="day-button" data-day="1">Вт</button>
+            <button class="day-button" data-day="2">Ср</button>
+            <button class="day-button" data-day="3">Чт</button>
+            <button class="day-button" data-day="4">Пт</button>
+            <button class="day-button" data-day="5">Сб</button>
+            <button class="day-button" data-day="6">Вс</button>
         </div>
 
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <p>Загрузка данных...</p>
+        <div class="day-progress">
+            <div class="day-progress-bar" id="dayProgressBar"></div>
         </div>
 
-        <div class="dashboard" id="dashboard">
-            <div class="user-info">
-                <div>
-                    <h2><span class="icon icon-user"></span> <span id="userName">Иванов Иван Иванович</span></h2>
-                    <p><span class="icon icon-book"></span> Зачетная книжка: <span id="userRecordBook">123456</span></p>
-                </div>
-                <button class="logout-btn" id="logoutBtn">Выйти</button>
-            </div>
-
-            <div class="semester-selector" id="semesterSelector">
-                <button class="semester-btn active" data-semester="1">1 семестр</button>
-                <button class="semester-btn" data-semester="2">2 семестр</button>
-                <button class="semester-btn" data-semester="3">3 семестр</button>
-                <button class="semester-btn" data-semester="4">4 семестр</button>
-            </div>
-
-            <div class="stats">
-                <div class="stat-card fade-in">
-                    <p class="stat-title"><span class="icon icon-grade"></span> Средний балл</p>
-                    <div class="stat-value" id="averageGrade">0.0</div>
-                    <p>из 5.0</p>
-                </div>
-                <div class="stat-card fade-in">
-                    <p class="stat-title"><span class="icon icon-attendance"></span> Посещаемость</p>
-                    <div class="stat-value" id="attendance">0%</div>
-                    <p>пропущено: <span id="missedClasses">0</span> пар</p>
-                </div>
-            </div>
-
-            <div class="subjects">
-                <h3 class="section-title">Предметы и оценки</h3>
-                <div id="subjectsList">
-                    <!-- Subjects will be loaded here -->
-                </div>
-            </div>
-
-            <div class="subjects">
-                <h3 class="section-title">Статистика посещаемости</h3>
-                <div class="attendance-chart" id="attendanceChart">
-                    <!-- Chart will be loaded here -->
-                </div>
+        <div class="schedule-container">
+            <h2 class="day-title">Понедельник</h2>
+            <div id="scheduleContent">
+                <!-- Расписание будет загружено здесь -->
             </div>
         </div>
+
+        <footer>
+            Обновляется автоматически • <span id="lastUpdated"></span>
+        </footer>
+    </div>
+    
+    <div class="offline-notification" id="offlineNotification">
+        <span>⚠️</span> Работает в оффлайн-режиме
     </div>
 
-    <button class="install-btn" id="installBtn">+</button>
+    <div class="pwa-install-prompt" id="pwaInstallPrompt">
+        <p>Установите приложение для быстрого доступа</p>
+        <button id="installPWA">Установить</button>
+        <button id="dismissPWA" style="background: transparent; color: var(--text);">Позже</button>
+    </div>
+    
+    <button class="refresh-button" id="refreshButton" title="Обновить расписание">↻</button>
 
     <script>
-        // Theme switching functionality
-        document.querySelector('.theme-btn').addEventListener('click', function() {
-            document.querySelector('.theme-options').classList.toggle('show');
-        });
-
-        document.querySelectorAll('.theme-option').forEach(option => {
-            option.addEventListener('click', function() {
-                const theme = this.getAttribute('data-theme');
-                document.documentElement.setAttribute('data-theme', theme);
-                localStorage.setItem('theme', theme);
-                document.querySelector('.theme-options').classList.remove('show');
-            });
-        });
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'default';
-        document.documentElement.setAttribute('data-theme', savedTheme);
-
-        // Show error message
-        function showError(message) {
-            const errorElement = document.getElementById('errorMessage');
-            errorElement.textContent = message;
-            errorElement.style.display = 'block';
-            setTimeout(() => {
-                errorElement.style.display = 'none';
-            }, 5000);
+        // Определение текущей недели (чётная/нечётная)
+        function getCurrentWeek() {
+            // Фиксированная дата начала семестра для примера (можно изменить)
+            const startDate = new Date('2024-02-05');
+            const today = new Date();
+            const diffTime = Math.abs(today - startDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+            const weekNumber = Math.floor(diffDays / 7) % 2;
+            
+            // 0 - первая неделя, 1 - вторая неделя
+            return weekNumber;
         }
 
-        // Show success message
-        function showSuccess(message) {
-            const successElement = document.getElementById('successMessage');
-            successElement.textContent = message;
-            successElement.style.display = 'block';
-            setTimeout(() => {
-                successElement.style.display = 'none';
-            }, 3000);
+        // Определение номера пары по времени
+        function getPairNumber(time) {
+            const timeSlots = [
+                "8:30-10:05",  // 1 пара
+                "10:15-11:50", // 2 пара
+                "12:20-13:55", // 3 пара
+                "14:05-15:40", // 4 пара
+                "15:50-17:25", // 5 пара
+                "17:35-19:10"  // 6 пара
+            ];
+            
+            return timeSlots.indexOf(time) + 1;
         }
 
-        // Login functionality
-        document.getElementById('loginBtn').addEventListener('click', function() {
-            const lastName = document.getElementById('lastName').value.trim();
-            const firstName = document.getElementById('firstName').value.trim();
-            const middleName = document.getElementById('middleName').value.trim();
-            const recordBook = document.getElementById('recordBook').value.trim();
-
-            if (!lastName || !firstName || !recordBook) {
-                showError('Пожалуйста, заполните все обязательные поля');
-                return;
-            }
-
-            // Show loading
-            document.getElementById('loginForm').style.display = 'none';
-            document.getElementById('loading').style.display = 'block';
-            document.getElementById('errorMessage').style.display = 'none';
-
-            // Try to fetch data from studstat.dgu.ru
-            fetchStudentData(lastName, firstName, middleName, recordBook);
-        });
-
-        // Function to fetch student data from studstat.dgu.ru
-        async function fetchStudentData(lastName, firstName, middleName, recordBook) {
-            try {
-                // Попытка получить данные с сайта studstat.dgu.ru
-                // В реальном приложении здесь должен быть правильный API endpoint
-                const response = await fetchWithTimeout('http://studstat.dgu.ru/api/student', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
+        // Данные расписания (исправленные по вашему описанию)
+        const scheduleData = {
+            0: { // Понедельник
+                name: "Понедельник",
+                lessons: [
+                    {
+                        time: "8:30-10:05",
+                        name: "Релейная защита и противоаварийная автоматика",
+                        room: "1-8",
+                        teacher: "Ниналалов С.А.",
+                        week: null, // для обеих недель
+                        type: "лекция"
                     },
-                    body: JSON.stringify({
-                        lastName,
-                        firstName,
-                        middleName,
-                        recordBook
-                    }),
-                    timeout: 10000 // 10 секунд таймаут
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    processStudentData(data, lastName, firstName, middleName, recordBook);
-                } else {
-                    throw new Error('Ошибка сервера: ' + response.status);
-                }
-            } catch (error) {
-                console.error('Ошибка при получении данных:', error);
-                // Если не удалось получить данные с сайта, используем демо-данные
-                showError('Не удалось подключиться к системе. Показаны демо-данные.');
-                
-                // Сохраняем данные пользователя
-                localStorage.setItem('user', JSON.stringify({
-                    lastName,
-                    firstName,
-                    middleName,
-                    recordBook
-                }));
-
-                // Обновляем UI с данными пользователя
-                document.getElementById('userName').textContent = `${lastName} ${firstName} ${middleName}`;
-                document.getElementById('userRecordBook').textContent = recordBook;
-
-                // Загружаем демо-данные
-                loadSampleData();
-
-                // Показываем dashboard
-                document.getElementById('loading').style.display = 'none';
-                document.getElementById('dashboard').style.display = 'block';
+                    {
+                        time: "10:15-11:50",
+                        name: "Геотермальная энергетика",
+                        room: "1-8",
+                        teacher: "Алхасова Д.А.",
+                        week: null, // для обеих недель
+                        type: "практика"
+                    },
+                    {
+                        time: "12:20-13:55",
+                        name: "Теоретические основы использования ВЭ",
+                        room: "1-2лк",
+                        teacher: "Алхасова Д.А.",
+                        week: null, // для обеих недель
+                        type: "практика"
+                    }
+                ]
+            },
+            1: { // Вторник
+                name: "Вторник",
+                lessons: [
+                    {
+                        time: "8:30-10:05",
+                        name: "Физкультура",
+                        room: "Спортзал",
+                        teacher: "",
+                        week: 1, // только вторая неделя
+                        type: "практика"
+                    },
+                    {
+                        time: "10:15-11:50",
+                        name: "Энергетические сооружения установок нетрадиционной и ВЭ",
+                        room: "1-2лк",
+                        teacher: "Баба Д.",
+                        week: null, // для обеих недель
+                        type: "лекция"
+                    },
+                    {
+                        time: "12:20-13:55",
+                        name: "Теоретические основы использования ВЭ",
+                        room: "1-2лк",
+                        teacher: "Алхасова Д.А.",
+                        week: 0, // только первая неделя
+                        type: "лекция"
+                    }
+                ]
+            },
+            2: { // Среда
+                name: "Среда",
+                lessons: [
+                    {
+                        time: "8:30-10:05",
+                        name: "Энергетические сооружения установок нетрадиционной и ВЭ",
+                        room: "2-41",
+                        teacher: "Баба Д.",
+                        week: 1, // только вторая неделя
+                        type: "практика"
+                    },
+                    {
+                        time: "10:15-11:50",
+                        name: "Релейная защита и противоаварийная автоматика",
+                        room: "1-2лк",
+                        teacher: "Ниналалов С.А.",
+                        week: null, // для обеих недель
+                        type: "практика"
+                    },
+                    {
+                        time: "12:20-13:55",
+                        name: "Энергетические сооружения установок нетрадиционной и ВЭ",
+                        room: "1-8",
+                        teacher: "Баба Д.",
+                        week: null, // для обеих недель
+                        type: "семинар"
+                    }
+                ]
+            },
+            3: { // Четверг
+                name: "Четверг",
+                lessons: [
+                    {
+                        time: "10:15-11:50",
+                        name: "Техника высоких напряжений",
+                        room: "2-30",
+                        teacher: "Шахсинов Г.Ш.",
+                        week: null, // для обеих недель
+                        type: "лекция"
+                    },
+                    {
+                        time: "12:20-13:55",
+                        name: "Метрология",
+                        room: "2-30",
+                        teacher: "Офицерова Н.В.",
+                        week: null, // для обеих недель
+                        type: "практика"
+                    },
+                    {
+                        time: "14:05-15:40",
+                        name: "Метрология",
+                        room: "2-30",
+                        teacher: "Офицерова Н.В.",
+                        week: 0, // только первая неделя
+                        type: "практика"
+                    }
+                ]
+            },
+            4: { // Пятница
+                name: "Пятница",
+                lessons: [
+                    {
+                        time: "10:15-11:50",
+                        name: "Эксплуатация электротех. оборудования ГЭС, ГАЭС",
+                        room: "2-30",
+                        teacher: "Шахсинов Г.Ш.",
+                        week: null, // для обеих недель
+                        type: "лекция"
+                    },
+                    {
+                        time: "12:20-13:55",
+                        name: "Энергетическое оборудование возобновляемой энергетики",
+                        room: "2-30",
+                        teacher: "Баламирзоев А.Г.",
+                        week: null, // для обеих недель
+                        type: "практика"
+                    },
+                    {
+                        time: "14:05-15:40",
+                        name: "Английский язык",
+                        room: "1-19",
+                        teacher: "Алибекова Д.М.",
+                        week: null, // для обеих недель
+                        type: "практика"
+                    }
+                ]
+            },
+            5: { // Суббота
+                name: "Суббота",
+                lessons: []
+            },
+            6: { // Воскресенье
+                name: "Воскресенье",
+                lessons: []
             }
-        }
+        };
 
-        // Helper function for fetch with timeout
-        async function fetchWithTimeout(resource, options = {}) {
-            const { timeout = 8000 } = options;
+        // Текущая неделя (0 - первая, 1 - вторая)
+        let currentWeek = getCurrentWeek();
+        // Текущий выбранный день (0-6)
+        let currentDay = new Date().getDay() - 1;
+        if (currentDay < 0) currentDay = 0; // Если воскресенье, показываем понедельник
+
+        // Инициализация приложения
+        document.addEventListener('DOMContentLoaded', function() {
+            // Установка индикатора недели
+            document.getElementById('weekIndicator').innerHTML = `<span>📅</span><span>Неделя ${currentWeek + 1}</span>`;
             
-            const controller = new AbortController();
-            const id = setTimeout(() => controller.abort(), timeout);
+            // Установка времени последнего обновления
+            updateLastUpdatedTime();
             
-            const response = await fetch(resource, {
-                ...options,
-                signal: controller.signal  
-            });
-            clearTimeout(id);
+            // Активация текущего дня в навигации
+            setupDayNavigation();
             
-            return response;
-        }
-
-        // Process student data from API
-        function processStudentData(data, lastName, firstName, middleName, recordBook) {
-            // Сохраняем данные пользователя
-            localStorage.setItem('user', JSON.stringify({
-                lastName,
-                firstName,
-                middleName,
-                recordBook
-            }));
-
-            // Сохраняем данные об успеваемости
-            localStorage.setItem('studentData', JSON.stringify(data));
-
-            // Обновляем UI с данными пользователя
-            document.getElementById('userName').textContent = `${lastName} ${firstName} ${middleName}`;
-            document.getElementById('userRecordBook').textContent = recordBook;
-
-            // Загружаем данные
-            loadStudentData(data);
-
-            // Показываем dashboard
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('dashboard').style.display = 'block';
+            // Настройка переключения тем
+            setupThemeSelector();
             
-            showSuccess('Добро пожаловать! Данные успешно загружены.');
-        }
-
-        // Logout functionality
-        document.getElementById('logoutBtn').addEventListener('click', function() {
-            localStorage.removeItem('user');
-            localStorage.removeItem('studentData');
-            document.getElementById('dashboard').style.display = 'none';
-            document.getElementById('loginForm').style.display = 'block';
+            // Кнопка обновления
+            setupRefreshButton();
             
-            // Clear form
-            document.getElementById('lastName').value = '';
-            document.getElementById('firstName').value = '';
-            document.getElementById('middleName').value = '';
-            document.getElementById('recordBook').value = '';
-        });
-
-        // Semester selection
-        document.querySelectorAll('.semester-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.semester-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                const semester = this.getAttribute('data-semester');
-                
-                // Загружаем данные для выбранного семестра
-                const studentData = JSON.parse(localStorage.getItem('studentData') || 'null');
-                if (studentData && studentData.semesters) {
-                    loadStudentData(studentData, semester);
-                } else {
-                    loadSampleData(semester);
-                }
-            });
-        });
-
-        // Check if user is already logged in
-        window.addEventListener('load', function() {
-            const user = JSON.parse(localStorage.getItem('user') || 'null');
-            if (user) {
-                document.getElementById('userName').textContent = `${user.lastName} ${user.firstName} ${user.middleName}`;
-                document.getElementById('userRecordBook').textContent = user.recordBook;
-                document.getElementById('loginForm').style.display = 'none';
-                document.getElementById('dashboard').style.display = 'block';
-                
-                const studentData = JSON.parse(localStorage.getItem('studentData') || 'null');
-                if (studentData) {
-                    loadStudentData(studentData);
-                } else {
-                    loadSampleData();
-                }
-            }
+            // Первоначальная отрисовка расписания
+            renderSchedule();
             
-            // Проверяем онлайн-статус
-            updateOnlineStatus();
+            // Обновление прогресса дня
+            updateDayProgress();
+            
+            // Проверка состояния сети
             window.addEventListener('online', updateOnlineStatus);
             window.addEventListener('offline', updateOnlineStatus);
+            updateOnlineStatus();
+            
+            // Сохранение данных в localStorage для оффлайн-работы
+            saveToLocalStorage();
+            
+            // Регистрация Service Worker для PWA
+            registerServiceWorker();
+            
+            // Настройка PWA установки
+            setupPWAInstall();
+            
+            // Обновление прогресса дня каждую минуту
+            setInterval(updateDayProgress, 60000);
         });
 
-        // Load student data from API response
-        function loadStudentData(studentData, semester = '1') {
-            // В реальном приложении здесь будет обработка данных с сервера
-            // Для демонстрации используем sample data
-            loadSampleData(semester);
+        // Настройка навигации по дням
+        function setupDayNavigation() {
+            const dayButtons = document.querySelectorAll('.day-button');
+            const today = new Date().getDay() - 1;
+            if (today >= 0 && today <= 6) {
+                dayButtons[today].classList.add('today');
+            }
+            
+            dayButtons.forEach((button, index) => {
+                if (index === currentDay) {
+                    button.classList.add('active');
+                }
+                
+                button.addEventListener('click', () => {
+                    dayButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    button.classList.add('active');
+                    currentDay = parseInt(button.getAttribute('data-day'));
+                    renderSchedule();
+                    updateDayProgress();
+                });
+            });
         }
 
-        // Sample data for demonstration
-        function loadSampleData(semester = '1') {
-            // Different data for different semesters
-            const semesterData = {
-                '1': [
-                    { name: 'Математика', grade: 5, attendance: '95%', missed: 1 },
-                    { name: 'Физика', grade: 4, attendance: '85%', missed: 3 },
-                    { name: 'Информатика', grade: 5, attendance: '100%', missed: 0 },
-                    { name: 'История', grade: 3, attendance: '75%', missed: 5 },
-                    { name: 'Английский язык', grade: 4, attendance: '90%', missed: 2 },
-                    { name: 'Физкультура', grade: 5, attendance: '100%', missed: 0 }
-                ],
-                '2': [
-                    { name: 'Высшая математика', grade: 4, attendance: '90%', missed: 2 },
-                    { name: 'Теоретическая физика', grade: 3, attendance: '80%', missed: 4 },
-                    { name: 'Программирование', grade: 5, attendance: '100%', missed: 0 },
-                    { name: 'Философия', grade: 4, attendance: '85%', missed: 3 },
-                    { name: 'Иностранный язык', grade: 5, attendance: '95%', missed: 1 },
-                    { name: 'Физкультура', grade: 5, attendance: '100%', missed: 0 }
-                ],
-                '3': [
-                    { name: 'Дифференциальные уравнения', grade: 4, attendance: '88%', missed: 3 },
-                    { name: 'Теория вероятностей', grade: 5, attendance: '92%', missed: 2 },
-                    { name: 'Базы данных', grade: 5, attendance: '100%', missed: 0 },
-                    { name: 'Web-технологии', grade: 4, attendance: '90%', missed: 2 },
-                    { name: 'Экономика', grade: 3, attendance: '78%', missed: 5 },
-                    { name: 'Физкультура', grade: 5, attendance: '100%', missed: 0 }
-                ],
-                '4': [
-                    { name: 'Математический анализ', grade: 4, attendance: '85%', missed: 4 },
-                    { name: 'Теория алгоритмов', grade: 5, attendance: '95%', missed: 1 },
-                    { name: 'Компьютерные сети', grade: 4, attendance: '90%', missed: 2 },
-                    { name: 'Операционные системы', grade: 5, attendance: '100%', missed: 0 },
-                    { name: 'Правоведение', grade: 3, attendance: '80%', missed: 4 },
-                    { name: 'Физкультура', grade: 5, attendance: '100%', missed: 0 }
-                ]
-            };
+        // Настройка переключателя тем
+        function setupThemeSelector() {
+            const themeButton = document.getElementById('themeButton');
+            const themeOptions = document.getElementById('themeOptions');
+            const themeOptionsList = document.querySelectorAll('.theme-option');
+            
+            themeButton.addEventListener('click', (e) => {
+                e.stopPropagation();
+                themeOptions.style.display = themeOptions.style.display === 'flex' ? 'none' : 'flex';
+            });
+            
+            themeOptionsList.forEach(option => {
+                option.addEventListener('click', () => {
+                    const theme = option.getAttribute('data-theme');
+                    changeTheme(theme);
+                    
+                    // Обновляем активную тему в меню
+                    themeOptionsList.forEach(opt => opt.classList.remove('active'));
+                    option.classList.add('active');
+                    
+                    themeOptions.style.display = 'none';
+                });
+            });
+            
+            // Закрытие меню тем при клике вне его
+            document.addEventListener('click', (e) => {
+                if (!themeButton.contains(e.target) && !themeOptions.contains(e.target)) {
+                    themeOptions.style.display = 'none';
+                }
+            });
+        }
 
-            const subjects = semesterData[semester] || semesterData['1'];
-            const subjectsList = document.getElementById('subjectsList');
-            subjectsList.innerHTML = '';
-
-            let totalGrade = 0;
-            let totalAttendance = 0;
-            let totalMissed = 0;
-
-            // Используем DocumentFragment для улучшения производительности
-            const fragment = document.createDocumentFragment();
-
-            subjects.forEach(subject => {
-                totalGrade += subject.grade;
-                totalAttendance += parseInt(subject.attendance);
-                totalMissed += subject.missed;
-
-                const subjectEl = document.createElement('div');
-                subjectEl.className = 'subject fade-in';
+        // Настройка кнопки обновления
+        function setupRefreshButton() {
+            document.getElementById('refreshButton').addEventListener('click', () => {
+                // Анимация вращения
+                const refreshIcon = document.getElementById('refreshButton');
+                refreshIcon.style.transition = 'transform 0.5s ease';
+                refreshIcon.style.transform = 'rotate(360deg)';
                 
-                let gradeClass = '';
-                if (subject.grade < 3) gradeClass = 'danger';
-                else if (subject.grade < 4) gradeClass = 'warning';
+                setTimeout(() => {
+                    refreshIcon.style.transform = 'rotate(0deg)';
+                    // Обновляем время последнего обновления
+                    updateLastUpdatedTime();
+                    // Перерисовываем расписание (на случай обновления данных)
+                    renderSchedule();
+                }, 500);
+            });
+        }
 
-                subjectEl.innerHTML = `
-                    <div class="subject-name">${subject.name}</div>
-                    <div class="subject-info">
-                        <div class="subject-stat">
-                            <span>Оценка:</span>
-                            <span class="grade ${gradeClass}">${subject.grade}</span>
-                        </div>
-                        <div class="subject-stat">
-                            <span>Посещаемость:</span>
-                            <span>${subject.attendance}</span>
-                        </div>
-                        <div class="subject-stat">
-                            <span>Пропущено:</span>
-                            <span>${subject.missed} пар</span>
+        // Функция отрисовки расписания для выбранного дня
+        function renderSchedule() {
+            const scheduleContent = document.getElementById('scheduleContent');
+            const dayTitle = document.querySelector('.day-title');
+            
+            const dayData = scheduleData[currentDay];
+            dayTitle.textContent = dayData.name;
+            
+            // Фильтрация занятий по текущей неделе
+            const filteredLessons = dayData.lessons.filter(lesson => 
+                lesson.week === null || lesson.week === currentWeek
+            );
+            
+            if (filteredLessons.length === 0) {
+                scheduleContent.innerHTML = `
+                    <div class="empty-schedule">
+                        <div class="empty-icon">📚</div>
+                        <div>Занятий нет</div>
+                    </div>
+                `;
+                return;
+            }
+            
+            let html = '';
+            filteredLessons.forEach((lesson) => {
+                const pairNumber = getPairNumber(lesson.time);
+                const typeClass = lesson.type === "лекция" ? "lecture" : 
+                                lesson.type === "практика" ? "practice" : "seminar";
+                
+                html += `
+                    <div class="lesson">
+                        <div class="lesson-number">${pairNumber}</div>
+                        <div class="lesson-time">⏰ ${lesson.time}</div>
+                        <div class="lesson-type ${typeClass}">${lesson.type}</div>
+                        <div class="lesson-name">${lesson.name}</div>
+                        <div class="lesson-details">
+                            <div class="lesson-detail">📍 ${lesson.room}</div>
+                            <div class="lesson-detail">👨‍🏫 ${lesson.teacher}</div>
                         </div>
                     </div>
                 `;
-
-                fragment.appendChild(subjectEl);
-            });
-
-            subjectsList.appendChild(fragment);
-
-            // Calculate averages
-            const avgGrade = (totalGrade / subjects.length).toFixed(1);
-            const avgAttendance = Math.round(totalAttendance / subjects.length);
-            
-            document.getElementById('averageGrade').textContent = avgGrade;
-            document.getElementById('attendance').textContent = `${avgAttendance}%`;
-            document.getElementById('missedClasses').textContent = totalMissed;
-
-            // Update chart
-            updateAttendanceChart(subjects);
-        }
-
-        // Update attendance chart
-        function updateAttendanceChart(subjects) {
-            const chart = document.getElementById('attendanceChart');
-            chart.innerHTML = '';
-            
-            // Используем DocumentFragment для улучшения производительности
-            const fragment = document.createDocumentFragment();
-            
-            subjects.forEach(subject => {
-                const attendanceValue = parseInt(subject.attendance);
-                const barHeight = (attendanceValue / 100) * 180;
-                
-                const bar = document.createElement('div');
-                bar.className = 'chart-bar';
-                bar.style.height = `${barHeight}px`;
-                
-                const label = document.createElement('div');
-                label.className = 'chart-label';
-                label.textContent = subject.name.substring(0, 3);
-                
-                bar.appendChild(label);
-                fragment.appendChild(bar);
             });
             
-            chart.appendChild(fragment);
+            scheduleContent.innerHTML = html;
         }
 
-        // PWA Installation
-        let deferredPrompt;
-        const installBtn = document.getElementById('installBtn');
+        // Функция смены темы
+        function changeTheme(themeName) {
+            document.body.classList.remove('theme-glass', 'theme-dark', 'theme-nature', 'theme-minimal');
+            
+            if (themeName !== 'default') {
+                document.body.classList.add(`theme-${themeName}`);
+            }
+            
+            // Сохранение выбранной темы в localStorage
+            localStorage.setItem('selectedTheme', themeName);
+        }
 
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            installBtn.style.display = 'flex';
-            installBtn.addEventListener('click', installApp);
-        });
-
-        function installApp() {
-            if (deferredPrompt) {
-                deferredPrompt.prompt();
-                deferredPrompt.userChoice.then((choiceResult) => {
-                    if (choiceResult.outcome === 'accepted') {
-                        showSuccess('Приложение успешно установлено!');
-                    } else {
-                        showError('Установка отменена');
+        // Загрузка сохранённой темы
+        const savedTheme = localStorage.getItem('selectedTheme');
+        if (savedTheme) {
+            changeTheme(savedTheme);
+            
+            // Активируем соответствующую опцию в меню
+            document.querySelectorAll('.theme-option').forEach(option => {
+                if (option.getAttribute('data-theme') === savedTheme) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+            });
+        }
+        
+        // Функция обновления статуса онлайн/оффлайн
+        function updateOnlineStatus() {
+            const notification = document.getElementById('offlineNotification');
+            if (!navigator.onLine) {
+                notification.style.display = 'flex';
+                // Загружаем данные из localStorage при оффлайн-режиме
+                loadFromLocalStorage();
+            } else {
+                notification.style.display = 'none';
+            }
+        }
+        
+        // Сохранение данных в localStorage
+        function saveToLocalStorage() {
+            const appData = {
+                scheduleData: scheduleData,
+                currentWeek: currentWeek,
+                currentDay: currentDay,
+                lastUpdated: new Date().toISOString()
+            };
+            
+            localStorage.setItem('scheduleAppData', JSON.stringify(appData));
+        }
+        
+        // Загрузка данных из localStorage
+        function loadFromLocalStorage() {
+            const savedData = localStorage.getItem('scheduleAppData');
+            if (savedData) {
+                try {
+                    const appData = JSON.parse(savedData);
+                    
+                    // Восстанавливаем текущий день и неделю
+                    currentWeek = appData.currentWeek || currentWeek;
+                    currentDay = appData.currentDay || currentDay;
+                    
+                    // Обновляем индикатор недели
+                    document.getElementById('weekIndicator').innerHTML = `<span>📅</span><span>Неделя ${currentWeek + 1}</span>`;
+                    
+                    // Обновляем время последнего обновления
+                    if (appData.lastUpdated) {
+                        const lastUpdated = new Date(appData.lastUpdated);
+                        document.getElementById('lastUpdated').textContent = `Обновлено: ${lastUpdated.toLocaleDateString()} ${lastUpdated.toLocaleTimeString()}`;
                     }
-                    deferredPrompt = null;
+                    
+                    // Перерисовываем расписание
+                    renderSchedule();
+                } catch (e) {
+                    console.error('Ошибка загрузки из localStorage:', e);
+                }
+            }
+        }
+        
+        // Обновление времени последнего обновления
+        function updateLastUpdatedTime() {
+            const now = new Date();
+            document.getElementById('lastUpdated').textContent = `Обновлено: ${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+            
+            // Сохраняем время обновления
+            const savedData = localStorage.getItem('scheduleAppData');
+            if (savedData) {
+                try {
+                    const appData = JSON.parse(savedData);
+                    appData.lastUpdated = now.toISOString();
+                    localStorage.setItem('scheduleAppData', JSON.stringify(appData));
+                } catch (e) {
+                    console.error('Ошибка сохранения времени обновления:', e);
+                }
+            }
+        }
+        
+        // Регистрация Service Worker
+        function registerServiceWorker() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js')
+                    .then(function(registration) {
+                        console.log('Service Worker зарегистрирован:', registration);
+                        
+                        // Периодически проверяем обновления
+                        setInterval(() => {
+                            registration.update();
+                        }, 60 * 60 * 1000); // Каждый час
+                    })
+                    .catch(function(error) {
+                        console.log('Ошибка регистрации Service Worker:', error);
+                    });
+                    
+                // Прослушиваем сообщения от Service Worker
+                navigator.serviceWorker.addEventListener('message', event => {
+                    if (event.data && event.data.type === 'CACHE_UPDATED') {
+                        console.log('Кэш обновлен');
+                    }
                 });
             }
-            installBtn.style.display = 'none';
         }
-
-        window.addEventListener('appinstalled', () => {
-            installBtn.style.display = 'none';
-            deferredPrompt = null;
-            console.log('PWA was installed');
-        });
-
-        // Handle offline/online status
-        function updateOnlineStatus() {
-            const offlineMessage = document.getElementById('offlineMessage');
-            if (!navigator.onLine) {
-                offlineMessage.style.display = 'block';
-                showError('Отсутствует интернет-соединение. Данные могут быть неактуальны.');
-            } else {
-                offlineMessage.style.display = 'none';
-                showSuccess('Соединение восстановлено');
-            }
-        }
-
-        // Register Service Worker for PWA functionality
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                // Create service worker code as a string
-                const swCode = `
-                    const CACHE_NAME = 'dgu-student-app-v3';
-                    const urlsToCache = [
-                        '/',
-                        './index.html',
-                        './styles.css',
-                        './app.js',
-                        'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSI0MCIgZmlsbD0iIzFhMjM3ZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSI4MCIgZm9udC13ZWlnaHQ9ImJvbGQiPtCU0LPQsDwvdGV4dD48L3N2Zz4='
-                    ];
-
-                    self.addEventListener('install', function(event) {
-                        event.waitUntil(
-                            caches.open(CACHE_NAME)
-                                .then(function(cache) {
-                                    return cache.addAll(urlsToCache);
-                                })
-                        );
-                    });
-
-                    self.addEventListener('fetch', function(event) {
-                        if (event.request.url.indexOf('http://studstat.dgu.ru') !== -1) {
-                            // Для запросов к API пробуем сеть сначала, потом кеш
-                            event.respondWith(
-                                fetch(event.request)
-                                    .then(function(response) {
-                                        // Клонируем ответ, потому что он может быть использован только один раз
-                                        const responseToCache = response.clone();
-                                        caches.open(CACHE_NAME)
-                                            .then(function(cache) {
-                                                cache.put(event.request, responseToCache);
-                                            });
-                                        return response;
-                                    })
-                                    .catch(function() {
-                                        return caches.match(event.request);
-                                    })
-                            );
-                        } else {
-                            // Для остальных запросов сначала кеш, потом сеть
-                            event.respondWith(
-                                caches.match(event.request)
-                                    .then(function(response) {
-                                        return response || fetch(event.request);
-                                    })
-                            );
-                        }
-                    });
-
-                    self.addEventListener('activate', function(event) {
-                        event.waitUntil(
-                            caches.keys().then(function(cacheNames) {
-                                return Promise.all(
-                                    cacheNames.map(function(cacheName) {
-                                        if (cacheName !== CACHE_NAME) {
-                                            return caches.delete(cacheName);
-                                        }
-                                    })
-                                );
-                            })
-                        );
-                    });
-                `;
-
-                // Create a Blob from the service worker code
-                const blob = new Blob([swCode], { type: 'application/javascript' });
-                const swURL = URL.createObjectURL(blob);
+        
+        // Настройка PWA установки
+        function setupPWAInstall() {
+            let deferredPrompt;
+            const installPrompt = document.getElementById('pwaInstallPrompt');
+            const installButton = document.getElementById('installPWA');
+            const dismissButton = document.getElementById('dismissPWA');
+            
+            // Показываем предложение об установке
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
                 
-                // Register the service worker
-                navigator.serviceWorker.register(swURL)
-                    .then(function(registration) {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    })
-                    .catch(function(err) {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
+                // Показываем промпт только если пользователь еще не видел его
+                if (!localStorage.getItem('pwaPromptDismissed')) {
+                    setTimeout(() => {
+                        installPrompt.style.display = 'flex';
+                    }, 3000);
+                }
+            });
+            
+            // Обработка установки
+            installButton.addEventListener('click', async () => {
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    const { outcome } = await deferredPrompt.userChoice;
+                    
+                    if (outcome === 'accepted') {
+                        console.log('Пользователь принял предложение об установке');
+                    }
+                    
+                    deferredPrompt = null;
+                    installPrompt.style.display = 'none';
+                }
+            });
+            
+            // Скрытие промпта
+            dismissButton.addEventListener('click', () => {
+                installPrompt.style.display = 'none';
+                localStorage.setItem('pwaPromptDismissed', 'true');
             });
         }
-
-        // Preload critical resources
-        function preloadCriticalResources() {
-            const resources = [
-                'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE5MiIgaGVpZ2h0PSIxOTIiIHJ4PSI0MCIgZmlsbD0iIzFhMjM3ZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1zaXplPSI4MCIgZm9udC13ZWlnaHQ9ImJvbGQiPtCU0LPQsDwvdGV4dD48L3N2Zz4='
-            ];
+        
+        // Обновление прогресса дня
+        function updateDayProgress() {
+            const progressBar = document.getElementById('dayProgressBar');
+            const now = new Date();
+            const dayStart = new Date(now);
+            dayStart.setHours(8, 0, 0, 0); // Начало учебного дня
+            const dayEnd = new Date(now);
+            dayEnd.setHours(19, 0, 0, 0); // Конец учебного дня
             
-            resources.forEach(resource => {
-                const link = document.createElement('link');
-                link.rel = 'preload';
-                link.href = resource;
-                link.as = 'image';
-                document.head.appendChild(link);
-            });
-        }
-
-        // Initialize on DOM content loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            preloadCriticalResources();
-            
-            // Check if app is launched from home screen
-            if (window.matchMedia('(display-mode: standalone)').matches) {
-                console.log('Launched from home screen');
-                document.body.classList.add('standalone');
+            if (now < dayStart) {
+                progressBar.style.width = '0%';
+            } else if (now > dayEnd) {
+                progressBar.style.width = '100%';
+            } else {
+                const totalDayLength = dayEnd - dayStart;
+                const elapsedTime = now - dayStart;
+                const progress = (elapsedTime / totalDayLength) * 100;
+                progressBar.style.width = `${Math.min(progress, 100)}%`;
             }
-        });
+        }
+    </script>
+    
+    <script>
+        // Inline Service Worker для оффлайн-работы
+        if ('serviceWorker' in navigator) {
+            // Создаем Service Worker прямо в коде
+            const swCode = `
+                const CACHE_NAME = 'schedule-app-v3';
+                const urlsToCache = [
+                    '/',
+                    './index.html',
+                    './manifest.json'
+                ];
+
+                self.addEventListener('install', function(event) {
+                    event.waitUntil(
+                        caches.open(CACHE_NAME)
+                            .then(function(cache) {
+                                console.log('Opened cache');
+                                return cache.addAll(urlsToCache);
+                            })
+                    );
+                });
+
+                self.addEventListener('fetch', function(event) {
+                    event.respondWith(
+                        caches.match(event.request)
+                            .then(function(response) {
+                                if (response) {
+                                    return response;
+                                }
+                                
+                                return fetch(event.request).then(function(response) {
+                                    if(!response || response.status !== 200 || response.type !== 'basic') {
+                                        return response;
+                                    }
+                                    
+                                    var responseToCache = response.clone();
+                                    
+                                    caches.open(CACHE_NAME)
+                                        .then(function(cache) {
+                                            cache.put(event.request, responseToCache);
+                                        });
+                                    
+                                    return response;
+                                });
+                            })
+                    );
+                });
+
+                self.addEventListener('activate', function(event) {
+                    event.waitUntil(
+                        caches.keys().then(function(cacheNames) {
+                            return Promise.all(
+                                cacheNames.map(function(cacheName) {
+                                    if (cacheName !== CACHE_NAME) {
+                                        return caches.delete(cacheName);
+                                    }
+                                })
+                            );
+                        })
+                    );
+                });
+            `;
+            
+            // Создаем Blob из кода Service Worker
+            const blob = new Blob([swCode], { type: 'application/javascript' });
+            const swURL = URL.createObjectURL(blob);
+            
+            // Регистрируем Service Worker
+            navigator.serviceWorker.register(swURL)
+                .then(function(registration) {
+                    console.log('Service Worker зарегистрирован:', registration);
+                })
+                .catch(function(error) {
+                    console.log('Ошибка регистрации Service Worker:', error);
+                });
+        }
     </script>
 </body>
 </html>
